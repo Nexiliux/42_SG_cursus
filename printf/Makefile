@@ -1,33 +1,35 @@
 CC = cc
 CFLAGS += -Wall -Wextra -Werror
 
-SRC =
+SRC = $(SRC_DIR)/#whatever.c
+
+SRC += ft_printf.c
 
 SRC_DIR = ./src
-OBJ_DIR = objs
+OBJ_DIR = ./objs
 LIBFT_DIR = ./libft
 
 NAME = libftprintf.a
 LIB = ar rc
 RM = rm -f
 
-OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
+OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-$(NAME): $(OBJ) $(OBJADD)
-	$(LIB) $(NAME) $(OBJ) $(OBJADD)
+$(NAME): $(OBJ)
+	$(LIB) $(NAME) $(OBJ)
 
-$(OBJ) = $(OBJ_DIR)%.o: $(SRC_DIR)/%.c
-		mkdir -p $(OBJ_DIR)
-		$(CC) $(CFLAGS) -c $< -o $@ -I includes -I libft
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I includes -I libft
 
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJ) $(OBJADD) $(OBJBONUS)
+	$(RM) -r $(OBJ_DIR)
 
 fclean: clean
 	$(RM) $(NAME) 
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re bonus
+.PHONY: all clean fclean re
