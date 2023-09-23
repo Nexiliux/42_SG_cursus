@@ -51,4 +51,6 @@ int	pf_putnbr(int	n)
 	return (count);
 }
 
-
+if (ft_checkconv)
+{
+	count += ft_runner(ft_checkconv);

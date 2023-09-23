@@ -41,7 +41,7 @@ int	ft_printf(const char *str, ...)
 			if (ft_checkconv(str) == 'c' || ft_checkconv(str) == '%')
 			{
 				write (1, str + 1, 1);
-				count++;
+				count += write(
 			}
 			else if (ft_checkconv(str) == 's')
 				ft_putstr_fd(args, 1);

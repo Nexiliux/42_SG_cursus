@@ -15,4 +15,8 @@
 
 int	ft_runner(char s)
 {
+	int	count;
 	
+	count = 0;
+	if (s == 'c' || s == '%')
+		count += (pf_
