@@ -13,18 +13,32 @@
 #include "libft.h"
 #include "printlib.h"
 
-char	ft_checkconv(const char *str)
+int	ft_checkconv(const char *str, va_list args)
 {
-	char	type;
-	
-	type = '\0';
-	str++;
-	if (*str == 'c' || *str == 's' || *str == 'd' || *str == 'i' ||
-		*str == 'p' || *str == 'u' || *str == 'x' || *str == 'X')
-		type = *str;
+	int	count;
+	char	c;
+
+	count = 0;
+	if (*str == 'c' || *str == '%')
+	{
+		c = va_arg(args, int);
+		count += write(1, &c, 1);
+	}
+	else if (*str == 's')
+		count += pf_putstr(va_arg(args, char *));
+	else if (*str == 'd' || *str == 'i')
+		count += pf_putnbr(va_arg(args, int));
+	else if (*str == 'p')
+		count += pf_hexadd(va_arg(args, void *));
+	else if (*str == 'u')
+		count += pf_uputnbr(va_arg(args, unsigned int));
+	else if (*str == 'x')
+		count += pf_printhex(va_arg(args, unsigned int), "0123456789abcdef");
+	else if (*str == 'X')
+		count += pf_printhex(va_arg(args, unsigned int), "0123456789ABCDEF");
 	else
-		return (0);
-	return (type);
+		count += write(1, str, 1);
+	return (count);
 }
 
 int	ft_printf(const char *str, ...)
@@ -32,39 +46,21 @@ int	ft_printf(const char *str, ...)
 	va_list args;
 	va_start (args, str);
 	int	count;
-	
+	int	i;
+
 	count = 0;
-	while (*str)
+	i = 0;
+	while (str[i])
 	{
-		if (*str == '%')
+		if (str[i] == '%')
 		{
-			if (ft_checkconv(str) == 'c' || ft_checkconv(str) == '%')
-			{
-				write (1, str + 1, 1);
-				count += write(
-			}
-			else if (ft_checkconv(str) == 's')
-				ft_putstr_fd(args, 1);
-			else if (ft_checkconv(str) == 'p')
-				ft_
-			else if (ft_checkconv(str) == 'd' || ft_checkconv(str) == 'i')
-				ft_
-			else if (ft_checkconv(str) == 'u')
-				ft_
-			else if (ft_checkconv(str) == 'x')
-				ft_
-			else if (ft_checkconv(str) == 'X')
-				ft_
+			count += ft_checkconv(&str[i + 1, args);
+			i++;
 		}
 		else
-		{
-			write (1, str, 1);
-			count++;
-		}
-		str++;
+			count += write(1, str[i], 1);
+		i++;
 	}
 	va_end (args);
 	return (count);
 }
-
-

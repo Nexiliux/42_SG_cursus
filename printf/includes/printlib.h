@@ -12,22 +12,16 @@
 
 #ifndef PRINTLIB_H
 # define PRINTLIB_H
+# include "libft/libft.h"
 # include <stdarg.h>
 # include <unistd.h>
 
-int	ft_printf(const char *, ...)
-void	ft_bzero(void *s, size_t n);
-char	*ft_itoa(int n);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
-
-t_list	*ft_lstnew(void *content);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-int		ft_lstsize(t_list *lst);
+int	ft_printf(const char*, ...);
+int	ft_checkconv(const char* str, va_list args);
+int	pf_putstr(char *s);
+int	pf_putnbr(int n);
+int	pf_uputnbr(unsigned int n);
+int	pf_hexadd(void *ptr);
+int	pf_printhex(unsigned int n, const char *base)
 
 #endif

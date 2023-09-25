@@ -1,7 +1,7 @@
 CC = cc
 CFLAGS += -Wall -Wextra -Werror
 
-SRC = $(SRC_DIR)/#whatever.c
+SRC = $(SRC_DIR)/ft_printf_helper.c
 
 SRC += ft_printf.c
 
