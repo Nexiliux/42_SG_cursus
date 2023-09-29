@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "printlib.h"
-#include "libft.h"
 
 int	pf_putstr(char *s)
 {
@@ -64,31 +63,21 @@ int	pf_uputnbr(unsigned int n)
 	return (count);
 }
 
-int	pf_hexadd(void *ptr)
+int pf_hexadd_util(unsigned long long ptr)
 {
-	unsigned long long result;
+	char	result;
 	int	count;
 
-	result = (unsigned long long)ptr;
-	write(1, "0x", 2);
-	static int pf_hexadd_util(unsigned long long ptr)
+	if (ptr < 16)
 	{
-		char	result;
-		int	count;
-
-		if (ptr < 16)
-		{
-			result = "0123456789abcdef"[ptr % 16];
-			write(1, &result, 1);
-			return (1);
-		}
 		result = "0123456789abcdef"[ptr % 16];
-		count = pf_hexadd_util(ptr / 16);
 		write(1, &result, 1);
-		return (count + 1);
+		return (1);
 	}
-	count = pf_hexadd_util(result);
-	return (count + 2);
+	result = "0123456789abcdef"[ptr % 16];
+	count = pf_hexadd_util(ptr / 16);
+	write(1, &result, 1);
+	return (count + 1);
 }
 
 int	pf_printhex(unsigned int n, const char *base)

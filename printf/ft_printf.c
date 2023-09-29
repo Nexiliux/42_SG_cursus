@@ -10,8 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "printlib.h"
+
+int	pf_hexadd(void* ptr)
+{
+	unsigned long long result;
+	int	count;
+
+	result = (unsigned long long)ptr;
+	write(1, "0x", 2);
+	count = pf_hexadd_util(result);
+	return (count + 2);
+}
 
 int	ft_checkconv(const char *str, va_list args)
 {

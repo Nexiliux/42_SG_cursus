@@ -22,6 +22,7 @@ int	pf_putstr(char *s);
 int	pf_putnbr(int n);
 int	pf_uputnbr(unsigned int n);
 int	pf_hexadd(void *ptr);
-int	pf_printhex(unsigned int n, const char *base)
+int	pf_hexadd_util(unsigned long long ptr);
+int	pf_printhex(unsigned int n, const char* base);
 
 #endif
