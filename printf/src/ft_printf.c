@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printlib.h"
+#include "ft_printf.h"
 
 int	pf_hexadd(void* ptr)
 {
@@ -64,11 +64,11 @@ int	ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			count += ft_checkconv(&str[i + 1, args);
+			count += ft_checkconv(&str[i + 1], args);
 			i++;
 		}
 		else
-			count += write(1, str[i], 1);
+			count += write(1, &str[i], 1);
 		i++;
 	}
 	va_end (args);

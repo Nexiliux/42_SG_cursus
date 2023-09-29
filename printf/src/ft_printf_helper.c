@@ -1,4 +1,4 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf_helper.c                                 :+:      :+:    :+:   */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printlib.h"
+#include "ft_printf.h"
 
 int	pf_putstr(char *s)
 {
@@ -90,7 +90,7 @@ int	pf_printhex(unsigned int n, const char *base)
 		write(1, &base[n], 1);
 			return (1);
 	}
-	count = pf_printhex(n / 16, base)
+	count = pf_printhex(n / 16, base);
 	write(1, &base[n % 16], 1);
 	return (count + 1);
 }

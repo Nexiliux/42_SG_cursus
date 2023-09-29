@@ -1,12 +1,10 @@
 CC = cc
 CFLAGS += -Wall -Wextra -Werror
 
-SRC = $(SRC_DIR)/%.c
-
-SRC += ft_printf.c
-
 SRC_DIR = ./src
 OBJ_DIR = ./objs
+
+SRC := $(wildcard $(SRC_DIR)/*.c)
 
 NAME = libftprintf.a
 LIB = ar rc
