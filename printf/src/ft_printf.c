@@ -12,12 +12,25 @@
 
 #include "ft_printf.h"
 
-int	pf_hexadd(void* ptr)
+int	pf_putchar(char c)
 {
-	unsigned long long result;
 	int	count;
 
+	count = write(1, &c, 1);
+	return (count);
+}
+
+int	pf_hexadd(void *ptr)
+{
+	unsigned long long	result;
+	int					count;
+
 	result = (unsigned long long)ptr;
+	if (!ptr)
+	{
+		pf_putstr("(nil)");
+		return (5);
+	}
 	write(1, "0x", 2);
 	count = pf_hexadd_util(result);
 	return (count + 2);
@@ -25,15 +38,13 @@ int	pf_hexadd(void* ptr)
 
 int	ft_checkconv(const char *str, va_list args)
 {
-	int	count;
-	char	c;
+	int		count;
 
 	count = 0;
-	if (*str == 'c' || *str == '%')
-	{
-		c = va_arg(args, int);
-		count += write(1, &c, 1);
-	}
+	if (*str == 'c')
+		count += pf_putchar(va_arg(args, int));
+	else if (*str == '%')
+		count += write(1, "%", 1);
 	else if (*str == 's')
 		count += pf_putstr(va_arg(args, char *));
 	else if (*str == 'd' || *str == 'i')
@@ -53,11 +64,11 @@ int	ft_checkconv(const char *str, va_list args)
 
 int	ft_printf(const char *str, ...)
 {
-	va_list args;
-	va_start (args, str);
-	int	count;
-	int	i;
+	va_list	args;
+	int		count;
+	int		i;
 
+	va_start (args, str);
 	count = 0;
 	i = 0;
 	while (str[i])

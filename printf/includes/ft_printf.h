@@ -15,13 +15,13 @@
 # include <stdarg.h>
 # include <unistd.h>
 
-int	ft_printf(const char*, ...);
-int	ft_checkconv(const char* str, va_list args);
+int	ft_printf(const char *str, ...);
+int	ft_checkconv(const char *str, va_list args);
 int	pf_putstr(char *s);
 int	pf_putnbr(int n);
 int	pf_uputnbr(unsigned int n);
 int	pf_hexadd(void *ptr);
 int	pf_hexadd_util(unsigned long long ptr);
-int	pf_printhex(unsigned int n, const char* base);
+int	pf_printhex(unsigned int n, const char *base);
 
 #endif

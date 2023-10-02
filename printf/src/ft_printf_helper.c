@@ -17,6 +17,11 @@ int	pf_putstr(char *s)
 	int	count;
 
 	count = 0;
+	if (!s)
+	{
+		pf_putstr("(null)");
+		return (6);
+	}
 	while (*s)
 	{
 		write (1, s, 1);
@@ -29,7 +34,7 @@ int	pf_putstr(char *s)
 int	pf_putnbr(int n)
 {
 	char	result;
-	int	count;
+	int		count;
 
 	count = 0;
 	if (n <= -2147483648)
@@ -44,7 +49,7 @@ int	pf_putnbr(int n)
 		n = -n;
 	}
 	if (n > 9)
-		pf_putnbr (n / 10);
+		count += pf_putnbr (n / 10);
 	result = (n % 10) + '0';
 	count += write (1, &result, 1);
 	return (count);
@@ -53,20 +58,20 @@ int	pf_putnbr(int n)
 int	pf_uputnbr(unsigned int n)
 {
 	char	result;
-	int	count;
+	int		count;
 
 	count = 0;
 	if (n > 9)
-		pf_uputnbr(n / 10);
+		count += pf_uputnbr(n / 10);
 	result = (n % 10) + '0';
 	count += write(1, &result, 1);
 	return (count);
 }
 
-int pf_hexadd_util(unsigned long long ptr)
+int	pf_hexadd_util(unsigned long long ptr)
 {
 	char	result;
-	int	count;
+	int		count;
 
 	if (ptr < 16)
 	{
@@ -83,12 +88,12 @@ int pf_hexadd_util(unsigned long long ptr)
 int	pf_printhex(unsigned int n, const char *base)
 {
 	int	count;
-	
+
 	count = 0;
 	if (n < 16)
 	{
 		write(1, &base[n], 1);
-			return (1);
+		return (1);
 	}
 	count = pf_printhex(n / 16, base);
 	write(1, &base[n % 16], 1);
