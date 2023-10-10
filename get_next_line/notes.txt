@@ -1,0 +1,35 @@
+//Create variables for everything to be freed. e.g. temp = ft_strjoin(wtv) *storage[fd] = temp;
+        free (temp);
+//Functions needed: strdup, strjoin, calloc, free function, 
+
+Logic flow: 
+Use get_next_line to orchestrate helper functions and chck if fd is feasible. 
+Use get_str to call read(check if its successful if not return NULL)
+        Use temp as the buffer for the read so that I can strjoin to existing storage[fd].
+        We use main buffer to store whatever is in the storage[fd] now.
+        Then we free up storage[fd] so we can make it strjoin buffer and temp.
+        Free up buffer, and repeat function till newline is found. 
+After get_str now has either a newline in storage[fd] or read has returned 0,
+get_next_line needs to orchestrate processing the information currently in storage[fd] for:
+1. Line to be returned:
+        Create a char *line = ft_line.
+        ft_line will use a pointer to storage[fd] to iterate through till '\0' or '\n'.
+        then allocate space for the return value using iteration and copy the line.
+        NULL terminate the line, then return it to line.
+2. The remainder to store after the first newline that has been processed by ft_line:
+        This is used to remove whatever has been returned to line, and update storage[fd] with
+        the remainder.
+        store_remainder will iterate through storage[fd] till '\0' or '\n'.
+        second iteration will iterate through the entire buffer.
+        We use ft_calloc(second - first iteration) to buffer for the space of remainder
+        copy remainder by setting second iteration to 0, then copying first + second, then
+        second++ to copy everything after the first '\n' or '\0'.
+        we return the buffer so that storage[fd] can be updated in get_next_line.
+
+1. Use a 2D array, *storage[1024]. This is to store the remainder of whatever was read up till
+before the newline.
+1.1. To achieve this, I need to create something to hold the buffer temporarily.
+        > We create a char *buffer for this.
+        > This will need to be dynamically allocated and freed.
+                >> Need to create a function that handles the freeing of this buffer when I use
+                strjoin to append the last 
