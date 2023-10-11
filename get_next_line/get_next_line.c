@@ -1,7 +1,4 @@
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
-#endif
 #include "get_next_line.h"
 
 char    *store_remainder(char *storage)

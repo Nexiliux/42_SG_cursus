@@ -34,7 +34,7 @@ char	*ft_strdup(const char *s)
 		return (ft_strdup(""));
 	while (s[clen])
 		clen++;
-	result = malloc(sizeof(char) * (clen + 1));
+	result = ft_calloc((clen + 1), 1);
 	if (!result)
 		return (NULL);
 	while (s[i])
@@ -60,7 +60,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	while (s2[j])
 		j++;
-	str = malloc(sizeof(char) * (i + j + 1));
+	str = ft_calloc((i + j + 1), 1);
 	if (!str)
 		return (NULL);
 	j = 0;

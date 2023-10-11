@@ -2,6 +2,7 @@
 /*functions needed: ft_strncpy, gnl_read_to_buffer, gnl_buffer_to_line*/
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
@@ -34,7 +35,7 @@ char	*ft_strdup(const char *s)
 		return (ft_strdup(""));
 	while (s[clen])
 		clen++;
-	result = malloc(sizeof(char) * (clen + 1));
+	result = ft_calloc((clen + 1), 1);
 	if (!result)
 		return (NULL);
 	while (s[i])
@@ -54,13 +55,21 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
+	printf("FT_STRJOIN STARTS\n");
+	printf("s1: %s\n", s1);
+	printf("s2: %s\n", s2);
 	if (!s1 && !s2)
 		return (0);
 	while (s1[i])
 		i++;
 	while (s2[j])
 		j++;
-	str = malloc(sizeof(char) * (i + j + 1));
+	printf("i: %ld\n", i);
+	printf("j: %ld\n", j);
+	printf("strlen s1: %ld\n", strlen(s1));
+	printf("strlen s2: %ld\n", strlen(s2));
+	printf("i + j + 1: %ld\n", (i + j + 1));
+	str = ft_calloc((i + j + 1), 1);
 	if (!str)
 		return (NULL);
 	j = 0;
@@ -69,12 +78,16 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	{
 		str[i] = s1[i];
 		i++;
+		printf("i: %ld\n", i);
 	}
+	printf("str after copy from s1: %s\n", str);
 	while (s2[j])
 	{
 		str[i + j] = s2[j];
 		j++;
 	}
+	printf("str after copy from s1 + s2: %s\n", str);
+	printf("FT_STRJOIN ENDS\n");
 	return (str);
 }
 

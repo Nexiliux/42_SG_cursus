@@ -64,7 +64,7 @@ void    get_str(char **storage, char *buffer, int fd)
     int     size;
     char    *temp;
 
-    printf("GETSTR STARTS\n");
+    printf("GET_STR STARTS\n");
     temp = ft_calloc(BUFFER_SIZE + 1, 1);
     if (!temp)
         return ;
@@ -83,8 +83,9 @@ void    get_str(char **storage, char *buffer, int fd)
         buffer = ft_strdup(*storage);
         printf("buffer is: %s\n", buffer);
         ft_free(storage, 0, 0);
+        printf("storage after ft_free is: %s\n", *storage);
         *storage = ft_strjoin(buffer, temp);
-        printf("storage is: %s\n", *storage);
+        printf("storage after ft_strjoin is: %s\n", *storage);
         ft_free(&buffer, 0, 0);
         if(got_newline(*storage))
             break;
@@ -106,6 +107,7 @@ char    *get_next_line(int fd)
         return (NULL);
     printf("fd is: %d\n", fd);
     printf("buffer is: %s\n", buffer);
+    printf("storage[fd] is: %s\n", storage[fd]);
     get_str(&storage[fd], buffer, fd);
     printf("AFTER GETSTR\n");
     printf("buffer is: %s\n", buffer);

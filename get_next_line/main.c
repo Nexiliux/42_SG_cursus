@@ -5,8 +5,12 @@
 int	main()
 {
 	int	fd = open ("test.txt", O_RDONLY);
-	printf ("%s", get_next_line(fd));
-	printf ("%s", get_next_line(fd));
-	printf ("%s", get_next_line(fd));
-	printf ("%s", get_next_line(fd));
+	int	fd2 = open ("test2.txt", O_RDONLY);
+	printf ("fd output is: %s\n", get_next_line(fd));
+	printf("-------------------------------------------------------------------\n");
+	printf ("fd2 output is: %s\n", get_next_line(fd2));
+	printf("-------------------------------------------------------------------\n");
+	printf ("fd output is: %s\n", get_next_line(fd));
+	printf("-------------------------------------------------------------------\n");
+	printf ("fd2 output is: %s\n", get_next_line(fd2));
 }
