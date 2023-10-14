@@ -87,8 +87,6 @@ int     main()
                         totaldays += month_days[i];
                         i++;
                 }
-                totaldays += 
-
         }
         else if (!passed_bday)
         {
