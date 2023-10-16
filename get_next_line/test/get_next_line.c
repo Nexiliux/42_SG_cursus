@@ -5,6 +5,18 @@
 #include "get_next_line.h"
 #include <stdio.h>
 
+int     ft_strlen(char *str)
+{
+    int     i;
+
+    i = 0;
+    if (!*str)
+        return (0);
+    while (*str)
+        i++;
+    return (i);
+}
+
 char    *store_remainder(char *storage)
 {
     char    *buffer;
@@ -33,7 +45,7 @@ char    *store_remainder(char *storage)
     return (buffer);
 }
 
-char    *ft_line(char *storage)
+char    *ft_line(char *storage, char *line)
 {
     char    *buffer;
     int     i;
@@ -41,6 +53,12 @@ char    *ft_line(char *storage)
     printf("FTLINE STARTS\n");
     i = 0;
     k = 0;
+    if (*storage == '\0')
+    {
+        printf("line has been freed.\n");
+        ft_free(0, &line, 0);
+        return (NULL);
+    }
     while (storage[i] && storage[i] != '\n')
         i++;
     if (storage[i] == '\n')
@@ -102,30 +120,38 @@ char    *get_next_line(int fd)
     char    *buffer;
     char    *line;
     printf("GET_NEXT_LINE STARTS\n");
-    buffer = NULL;
-    if (fd <= 0 || fd > 1024 || BUFFER_SIZE <= 0)
+    line = NULL;
+    buffer = NULL; //initialise buffer
+    if (fd <= 0 || fd > 1024 || BUFFER_SIZE <= 0) //check for bad fd
         return (NULL);
     printf("fd is: %d\n", fd);
     printf("buffer is: %s\n", buffer);
     printf("storage[fd] is: %s\n", storage[fd]);
-    get_str(&storage[fd], buffer, fd);
+    get_str(&storage[fd], buffer, fd); //begin the code, retrieve all values needed
     printf("AFTER GETSTR\n");
     printf("buffer is: %s\n", buffer);
     printf("storage is: %s\n", storage[fd]);
     if (storage[fd])
     {
-        line = ft_line(storage[fd]);
+        line = ft_line(storage[fd], line); //get the first newline found and assign to line first
         printf("line is: %s\n", line);
-        buffer = store_remainder(storage[fd]);
+        buffer = store_remainder(storage[fd]); //store the remainding into buffer
         printf("buffer is: %s\n", buffer);
-        ft_free(&storage[fd], 0, 0);
+        ft_free(&storage[fd], 0, 0); //free currrent storage[fd] to get remainder from buffer
         printf("after free storage[fd]: %s\n", storage[fd]);
-        storage[fd] = ft_strdup(buffer);
-        if (*storage[fd] == '\0')
-            ft_free(&storage[fd], 0, 0);
+        storage[fd] = ft_strdup(buffer); //push in remainder from buffer using strdup
+        if (*storage[fd] == '\0') //check if fd is empty, means no remainder and can free le
+            ft_free(&storage[fd], 0, 0); //we give fd freedom here
         printf("after storage[fd] = buffer, storage[fd] is: %s\n", storage[fd]);
-        ft_free(&buffer, 0, 0);
+        ft_free(&buffer, 0, 0); //we reset buffer for next use and ofc give it freedom if end of program
     }
+    /*
+    if (!line || (ft_strlen(line) == 0 && &storage[fd] == NULL))
+    {
+        printf("line has been freed");
+        ft_free(&line, 0, 0);
+    }
+    */
     printf("GET_NEXT_LINE ENDS\n");
     printf("check memories:\nBUFFER: %s\nSTORAGE[fd]: %s\nLINE: %s\n", buffer, storage[fd], line);
     return (line);
