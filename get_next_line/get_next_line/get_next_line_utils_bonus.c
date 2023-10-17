@@ -1,13 +1,11 @@
 
-/*functions needed: ft_strncpy, gnl_read_to_buffer, gnl_buffer_to_line*/
-
 #include "get_next_line_bonus.h"
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void	*result;
 	unsigned char	*s;
-	int		i;
+	void			*result;
+	int				i;
 
 	i = nmemb * size;
 	result = (void *)malloc(size * nmemb);
@@ -63,11 +61,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str = ft_calloc((i + j + 1), 1);
 	if (!str)
 		return (NULL);
-	j = 1;
-	i = 1;
-	while (s1[--i])
+	j = -1;
+	i = -1;
+	while (s1[++i])
 		str[i] = s1[i];
-	while (s2[--j])
+	while (s2[++j])
 		str[i + j] = s2[j];
 	return (str);
 }
