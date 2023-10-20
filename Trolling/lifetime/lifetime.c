@@ -4,6 +4,100 @@
 #include <time.h>
 #include <locale.h> //This is for LC_NUMBERIC
 
+//Process remaining lifespan
+	//This is done using / and %.
+	//gender_sec is the expected lifespan in seconds of both genders; 2,686,299,200(F) & 2,546,698,320(M)
+void	remaining_lifespan(unsigned int	totalseconds, unsigned int gender_sec)
+{
+	unsigned int	exyear, exmon, exweek, exday, exhour, exmin, exsec, remaining_seconds;
+	
+	remaining_seconds = gender_sec - totalseconds; //Get remaining seconds to process in y,m,w,d,h,m,s
+	float percentage_lived = ((float)totalseconds / gender_sec) * 100; //Calculate percent lived
+	float percentage_left = ((float)remaining_seconds / gender_sec) * 100; //Calculte percent left
+	exyear = remaining_seconds / 31536000; //How many years using /
+	remaining_seconds %= 31536000; //Get remaininder after calculating years by %
+	exmon = remaining_seconds / (30.44 * 24 * 3600); //Approximate days in a month is 30.44
+	remaining_seconds %= 2630016; //This is how many days left after months
+	exweek = remaining_seconds / 604800; //calculate for weeks
+	remaining_seconds %= 604800;
+	exday = remaining_seconds / 86400; //calculate days
+	remaining_seconds %= 86400;
+	exhour = remaining_seconds / 3600; //calculate hours
+	remaining_seconds %= 3600;
+	exmin = remaining_seconds / 60; //calculate mins
+	exsec = remaining_seconds % 60; //set last remaining secs
+	printf("You still have %d years, %d months, %d weeks, %d days, %d hours, %d minutes, %d seconds left.\n", 
+		exyear,
+		exmon,
+		exweek,
+		exday,
+		exhour,
+		exmin,
+		exsec);
+	printf("You are %%%.2f through your current life and have %%%.2f left.\n", percentage_lived, percentage_left);
+}
+//This is for those whose life has exceeded average lifespan
+	//Only diff is that totalseconds is more than expected lifespan
+	//gender_sec is the expected lifespan in seconds of both genders; 2,686,299,200(F) & 2,546,698,320(M)
+void	over_LE(unsigned int totalseconds, unsigned int gender_sec)
+{
+	unsigned int	exyear, exmon, exweek, exday, exhour, exmin, exsec, remaining_seconds;
+	
+	printf("WOW u r a dino");
+	remaining_seconds = totalseconds - gender_sec; //Get difference in seconds to process in y,m,w,d,h,m,s
+	float percentage_more = (((float)remaining_seconds / gender_sec) * 100) - 100; //Calculte percent more
+	exyear = remaining_seconds / 31536000; //How many years using /
+	remaining_seconds %= 31536000; //Get remaininder after calculating years by %
+	exmon = remaining_seconds / (30.44 * 24 * 3600); //Approximate days in a month is 30.44
+	remaining_seconds %= 2630016; //This is how many days left after months
+	exweek = remaining_seconds / 604800; //calculate for weeks
+	remaining_seconds %= 604800;
+	exday = remaining_seconds / 86400; //calculate days
+	remaining_seconds %= 86400;
+	exhour = remaining_seconds / 3600; //calculate hours
+	remaining_seconds %= 3600;
+	exmin = remaining_seconds / 60; //calculate mins
+	exsec = remaining_seconds % 60; //set last remaining secs
+	printf("You have lived %d years, %d months, %d weeks, %d days, %d hours, %d minutes, %d seconds more than expected!\n", 
+		exyear,
+		exmon,
+		exweek,
+		exday,
+		exhour,
+		exmin,
+		exsec);
+	printf("You have lived %%%.2f more than expected!", percentage_more);
+}
+
+char	*horoscope(int day, int mon)
+{
+	//For horoscope, got a few ways to do it: hardcoding months and converting bday to which day in the year
+	if ((day >= 22 && mon == 12) || (day <= 19 && mon == 1))
+		return ("Capricorn");
+	if ((day >= 20 && mon == 1) || (day <= 18 && mon == 2))
+		return ("Aquarius");
+	if ((day >= 19 && mon == 2) || (day <= 20 && mon == 3))
+		return ("Pisces");
+	if ((day >= 21 && mon == 3) || (day <= 19 && mon == 4))
+		return ("Aries");
+	if ((day >= 20 && mon == 4) || (day <= 20 && mon == 5))
+		return ("Taurus");
+	if ((day >= 21 && mon == 5) || (day <= 20 && mon == 6))
+		return ("Gemini");
+	if ((day >= 21 && mon == 6) || (day <= 22 && mon == 7))
+		return ("Cancer");
+	if ((day >= 23 && mon == 7) || (day <= 22 && mon == 8))
+		return ("Leo");
+	if ((day >= 23 && mon == 8) || (day <= 22 && mon == 9))
+		return ("Virgo");
+	if ((day >= 23 && mon == 9) || (day <= 22 && mon == 10))
+		return ("Libra");
+	if ((day >= 23 && mon == 10) || (day <= 21 && mon == 11))
+		return ("Scorpio");
+	if ((day >= 22 && mon == 11) || (day <= 21 && mon == 12))
+		return ("Sagittarius");
+}
+
 int     main()
 {
 	//Setting locales
@@ -18,7 +112,7 @@ int     main()
 
         //Obtaining birthday input
         int     day, month, year;
-        printf("GREETINGS.\nThis is program will calculate how long you have been alive.\n");
+        printf("GREETINGS.\nThis program will calculate how long you have been alive.\n");
         printf("Enter your birthday (DDMMYYYY) to begin.\n");
         while (1)
         {
@@ -42,6 +136,9 @@ int     main()
                         scanf("%*[^\n]");
                 }
         }
+	//Horoscope processing starts
+	printf("Your horoscope is: %s\n", horoscope(day, month));
+	
         //Processing birthday input starts
         printf("To start, the current date and time is: %02d/%02d/%4d  %02d:%02d:%02d.\n", 
                 local_time_info->tm_mday,
@@ -140,7 +237,7 @@ int     main()
 
 		//Process life expectancy.
 		printf("--------------------------------------------------------------------\n");
-		printf("The program will now calculate how long you have to live.\n");
+		printf("The program will now calculate how long more you have to live.\n");
 		printf("It will be based on the life expectancy in Singapore as of 2022.\n");
 		printf("This is 80.7 years for males and 85.2 years for females.\n");
 		unsigned int	exyear, exmon, exweek, exday, exhour, exmin, exsec, remaining_seconds;
@@ -181,7 +278,7 @@ int     main()
 			remaining_seconds = 2546698320 - totalseconds; //Get remaining seconds to process in y,m,w,d,h,m,s
 			float percentage_lived = ((float)totalseconds / 2546698320) * 100; //Calculate percent lived
 			float percentage_left = ((float)remaining_seconds / 2546698320) * 100; //Calculte percent left
-			exyear = remaining_seconds / 31536000; //How many years using /
+			exyear = remaining_seconds / 31536000; //How many years usc2r4s4% cc lifetime.c 
 			remaining_seconds %= 31536000; //Get remaininder after calculating years by %
 			exmon = remaining_seconds / (30.44 * 24 * 3600); //Approximate days in a month is 30.44
 			remaining_seconds %= 2630016; //This is how many days left after months
@@ -268,70 +365,29 @@ int     main()
 		printf("Your age in seconds is: %'d.\n", totalseconds);
 
 		//Process life expectancy.
-		printf("--------------------------------------------------------------------\n");
+		printf("--------------------------------------------------------------------------------------------------\n");
 		printf("The program will now calculate how long you have to live.\n");
 		printf("It will be based on the life expectancy in Singapore as of 2022.\n");
 		printf("This is 80.7 years for males and 85.2 years for females.\n");
-		unsigned int	exyear, exmon, exweek, exday, exhour, exmin, exsec, remaining_seconds;
-		//TURN LIFE EXPECTANCY INTO FUNCTIONS
-		printf("--------------------------------------------------------------------\n");
+		printf("--------------------------------------------------------------------------------------------------\n");
 		printf("If you are MALE, these r ur stats:\n");
-		if (totalseconds > 2546698320)
-		{
-			printf("WOW u r an old dood");
-			remaining_seconds = totalseconds - 2546698320; //Get difference in seconds to process in y,m,w,d,h,m,s
-			float percentage_more = (((float)remaining_seconds / 2546698320) * 100) - 100; //Calculte percent more
-			exyear = remaining_seconds / 31536000; //How many years using /
-			remaining_seconds %= 31536000; //Get remaininder after calculating years by %
-			exmon = remaining_seconds / (30.44 * 24 * 3600); //Approximate days in a month is 30.44
-			remaining_seconds %= 2630016; //This is how many days left after months
-			exweek = remaining_seconds / 604800; //calculate for weeks
-			remaining_seconds %= 604800;
-			exday = remaining_seconds / 86400; //calculate days
-			remaining_seconds %= 86400;
-			exhour = remaining_seconds / 3600; //calculate hours
-			remaining_seconds %= 3600;
-			exmin = remaining_seconds / 60; //calculate mins
-			exsec = remaining_seconds % 60; //set last remaining secs
-			printf("You have lived %d years, %d months, %d weeks, %d days, %d hours, %d minutes, %d seconds more than expected!\n", 
-				exyear,
-				exmon,
-				exweek,
-				exday,
-				exhour,
-				exmin,
-				exsec);
-			printf("You have lived %%%.2f more than expected!", percentage_more);
-		}
+		unsigned int	gender_sec = 2546698320; //gender_sec is the expected lifespan in seconds of both genders; 2,686,299,200(F) & 2,546,698,320(M)
+		if (totalseconds > gender_sec)
+			over_LE(totalseconds, gender_sec);
+
 		//Process remaining lifespan
 			//This is done using / and %.
 		else
-		{
-			remaining_seconds = 2546698320 - totalseconds; //Get remaining seconds to process in y,m,w,d,h,m,s
-			float percentage_lived = ((float)totalseconds / 2546698320) * 100; //Calculate percent lived
-			float percentage_left = ((float)remaining_seconds / 2546698320) * 100; //Calculte percent left
-			exyear = remaining_seconds / 31536000; //How many years using /
-			remaining_seconds %= 31536000; //Get remaininder after calculating years by %
-			exmon = remaining_seconds / (30.44 * 24 * 3600); //Approximate days in a month is 30.44
-			remaining_seconds %= 2630016; //This is how many days left after months
-			exweek = remaining_seconds / 604800; //calculate for weeks
-			remaining_seconds %= 604800;
-			exday = remaining_seconds / 86400; //calculate days
-			remaining_seconds %= 86400;
-			exhour = remaining_seconds / 3600; //calculate hours
-			remaining_seconds %= 3600;
-			exmin = remaining_seconds / 60; //calculate mins
-			exsec = remaining_seconds % 60; //set last remaining secs
-			printf("You still have %d years, %d months, %d weeks, %d days, %d hours, %d minutes, %d seconds left.\n", 
-				exyear,
-				exmon,
-				exweek,
-				exday,
-				exhour,
-				exmin,
-				exsec);
-			printf("You are %%%.2f through your current life and have %%%.2f left.\n", percentage_lived, percentage_left);
-		}
-		printf("Program has ended.");
+			remaining_lifespan(totalseconds, gender_sec);
+		printf("If you are FEMALE, these r ur stats:\n");
+		gender_sec = 2686299200; //gender_sec is the expected lifespan in seconds of both genders; 2,686,299,200(F) & 2,546,698,320(M)
+		if (totalseconds > gender_sec) 
+			over_LE(totalseconds, gender_sec);
+
+		//Process remaining lifespan
+			//This is done using / and %.
+		else
+			remaining_lifespan(totalseconds, gender_sec);
+		printf("Program has ended.\n");
         }
 }

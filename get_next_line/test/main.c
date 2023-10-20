@@ -6,7 +6,7 @@ int	main()
 {
 	int	fd1 = open ("test.txt", O_RDONLY);
 	int	fd2 = open ("test2.txt", O_RDONLY);
-	int	i = 2;
+	int	i = 3;
 	while(i > 0)
 	{
 	printf ("fd1 output is: %s\n", get_next_line(fd1));
