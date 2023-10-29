@@ -1,0 +1,15 @@
+Originally the ANSI escape codes specified only 8 colors for foreground (the text) 
+from 30 to 37: black, red, green, yellow, blue, magenta, cyan and white. 
+Same colors can be used for the terminal background but these are defined as 
+the numbers from 40 to 47.
+
+\x1b[31m Red
+\x1b[32m Green
+\x1b[33m yellow
+\x1b[34m blue
+\x1b[35m magenta
+\x1b[36m Cyan
+\x1b[37m White
+\x1b[1m is used to make the text bold.
+\x1b[4m is used to underline the text.
+\x1b[0m is used to reset the text attributes to the default.
