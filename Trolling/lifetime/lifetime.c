@@ -275,10 +275,17 @@ int     main()
         if (passed_bday)
         {
 		int	nyear = local_time_info->tm_year + 1900 - year; //This was a mistake but nvm just use
+		int	nmon = local_time_info->tm_mon + 1 - month;
+		int	nday = local_time_info->tm_mday - day;
+		if (local_time_info->tm_mday < day)
+			{
+				nday += 31;
+				nmon -= 1;
+			}
                 printf("You are now \x1b[31m%d years\x1b[0m, \x1b[32m%d months\x1b[0m, \x1b[33m%d days\x1b[0m, \x1b[34m%d hours\x1b[0m, \x1b[34m%d minutes\x1b[0m, \x1b[34m%d seconds\x1b[0m old.\n", 
                         nyear,
-                        local_time_info->tm_mon + 1 - month,
-                        local_time_info->tm_mday - day,
+                        nmon,
+                        nday,
                         local_time_info->tm_hour,
                         local_time_info->tm_min,
                         local_time_info->tm_sec);
@@ -295,7 +302,7 @@ int     main()
 
                 //Processing for age in months
                 int     totalmon = (12 * (nyear - 1)) + 
-                        ((12 - month) + local_time_info->tm_mon + 1);
+                        ((12 - month) + local_time_info->tm_mon);
                 printf("Your age in months is: \x1b[32m%'d.\x1b[0m\n", totalmon);
 
 		//Processing for age in weeks
