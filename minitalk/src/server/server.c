@@ -1,18 +1,21 @@
 #include "../../libft/libft.h"
 #include "../../printf/includes/ft_printf.h"
+#include "../../minitalk.h"
 
-int	main(int argc, char **argv)
+/*void	sig_handler(int	sig)
 {
-	if (argc == 1 || argc > 2){
-	char	*str;
-	str = ft_strdup("Server libft/printf working");
-	ft_printf("%s", str);
+
+}*/
+
+int	main()
+{
+	/*struct sigaction sa;
+	sa.sa_handler = sig_handler;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);*/
+
+	ft_printf("Server PID: %d\n", getpid());
 	return (0);
-	}
-	else
-	{
-		ft_printf("%s", argv[1]);
-	}
-	return (0);
-	
 }

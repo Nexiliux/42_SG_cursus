@@ -1,5 +1,6 @@
 #include "../../libft/libft.h"
 #include "../../printf/includes/ft_printf.h"
+#include "../../minitalk.h"
 
 int	main(int argc, char **argv)
 {

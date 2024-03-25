@@ -4,7 +4,7 @@ LDFLAGS += -L./libft -L./printf
 LIBS += -lft -lftprintf
 
 SRC_DIR = ./src
-OBJ_DIR = ./objs
+OBJ_DIR = ./minitalk_objs
 
 SERVER_SRC := $(wildcard $(SRC_DIR)/server/*.c)
 CLIENT_SRC := $(wildcard $(SRC_DIR)/client/*.c)
@@ -25,13 +25,13 @@ $(SERVER_NAME): $(SERVER_OBJ)
 $(CLIENT_NAME): $(CLIENT_OBJ)
 	$(CC) $(CFLAGS) $(CLIENT_OBJ) -o $(CLIENT_NAME) $(LDFLAGS) $(LIBS)
 
-$(OBJ_DIR)/server/%.o: $(SRC_DIR)/server/%.c
+$(OBJ_DIR)/server/%.o: $(SRC_DIR)/server/%.c minitalk.h
 	mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $< -o $@ -Iincludes
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_DIR)/client/%.o: $(SRC_DIR)/client/%.c
+$(OBJ_DIR)/client/%.o: $(SRC_DIR)/client/%.c minitalk.h
 	mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $< -o $@ -Iincludes
+	$(CC) $(CFLAGS) -c $< -o $@
 
 libft:
 	$(MAKE) -C ./libft
