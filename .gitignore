@@ -6,19 +6,8 @@
 /.vs/ProjectSettings.json
 /.vs/slnx.sqlite
 /.vs/VSWorkspaceState.json
-Tests/a.out
-Tests/test.c
-Tests/test.txt
-Tests/xlow one/a.out
-Tests/xlow one/get_next_line.h
-Tests/xlow one/get_next_line.h.gch
-Tests/xlow one/gnl.c
-Tests/xlow one/gnlu.c
-Tests/xlow one/main.c
-Tests/xlow one/test.txt
 .vscode/settings.json
 .vscode/tasks.json
 Tests/xlow one/test2.txt
 Tests/xlow one/test3.txt
-Trolling/lifetime/a.out
 Trolling/lifetime/a.out
