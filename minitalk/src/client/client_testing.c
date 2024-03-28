@@ -2,7 +2,7 @@
 #include "../../printf/includes/ft_printf.h"
 #include "../../minitalk.h"
 
-int	main(int argc, char **argv)
+/*int	main(int argc, char **argv)
 {
 	if (argc == 1 || argc > 2){
 	char	*str;
@@ -16,4 +16,4 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 	
-}
+}*/
