@@ -55,7 +55,7 @@ void	sig_handler(int sig)
 {
 	unsigned int	server_pid;
 	static int	i = 1;
-	char	*message;
+	char		*message;
 
 	server_pid = ft_atoi(g_argv[1]);
 	message = ft_strdup(g_argv[2]);
@@ -84,7 +84,10 @@ int	main(int argc, char **argv)
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	if (argc != 3 || !argv[2])
+	{
+		ft_printf("Usage: [./client] [server_pid] [your_message]\n");
 		return (0);
+	}
 	g_argv = argv;
 	if (g_argv[2][0] && g_argv[2][0] != '\0')
 		first_signal(g_argv[2][0], ft_atoi(g_argv[1]), 7);
