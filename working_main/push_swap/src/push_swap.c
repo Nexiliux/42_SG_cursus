@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:24:56 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/13 22:03:47 by wchow            ###   ########.fr       */
+/*   Updated: 2024/04/19 23:15:48 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,17 @@
 int	main(int argc, char **argv)
 {
 	stack_node *a;
-	stack_node *b;
+	//stack_node *b;
 
+	a = NULL;
+	//b = NULL;
 	init(&a, argc, argv);
-	stack_a 
-	
+	ft_printf("Stack a struct starting to print\n");
+	while (a->next)
+	{
+		ft_printf("Index[%d]	Num = %d\n", a->index, a->num);
+		a = a->next;
+	}
+	//REMEMBER TO TEST THE COMMANDS
 	return (0);
 }

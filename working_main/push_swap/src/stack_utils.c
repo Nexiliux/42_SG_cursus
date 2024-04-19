@@ -6,20 +6,13 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 21:06:54 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/13 21:23:54 by wchow            ###   ########.fr       */
+/*   Updated: 2024/04/19 23:08:47 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../printf/includes/ft_printf.h"
 #include "../push_swap.h"
-typedef struct t_stack_node
-{
-	int	num;
-	int	index;
-	struct t_stack_node *next;
-	struct t_stack_node *prev;
-} stack_node;
 
 int	stack_sorted(stack_node *a)
 {
