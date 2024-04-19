@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   misc_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 18:24:12 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/11 19:32:44 by wchow            ###   ########.fr       */
+/*   Created: 2024/04/13 16:51:29 by wchow             #+#    #+#             */
+/*   Updated: 2024/04/13 21:31:43 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft/libft.h"
+#include "../printf/includes/ft_printf.h"
+#include "../push_swap.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+int	ft_count_ele(char **argv)
 {
-	if (new)
-	{
-		new->next = *lst;
-		*lst = new;
-	}
+	int	i;
+
+	i = 0;
+	while (argv[i])
+		i++;
+	if ((ft_strncmp(argv[0], "./push_swap", 11)) != 0) //if ./push_swap exists, add 1 to argc. Basically it's just because of ft_split essentially removing program name
+		i++;
+	return (i); //return all inputs including ./push_swap
 }
