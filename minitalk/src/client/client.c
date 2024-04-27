@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 15:20:09 by wchow             #+#    #+#             */
-/*   Updated: 2024/03/29 15:20:20 by wchow            ###   ########.fr       */
+/*   Updated: 2024/04/27 14:40:09 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,12 @@ int	main(int argc, char **argv)
 	sa.sa_flags = 0;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
-	if (argc != 3 || !argv[2])
+	if (argc != 3 || !argv[2] || ft_atoi(argv[1]) <= 0)
 	{
 		ft_printf("Usage: [./client] [server_pid] [your_message]\n");
-		return (0);
+		if (ft_atoi(argv[1]) <= 0)
+			ft_printf("server_pid cannot be less than or equal to zero.\n");
+		exit(0);
 	}
 	g_argv = argv;
 	if (g_argv[2][0] && g_argv[2][0] != '\0')
