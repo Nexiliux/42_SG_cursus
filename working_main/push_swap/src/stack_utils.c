@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 21:06:54 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/19 23:08:47 by wchow            ###   ########.fr       */
+/*   Updated: 2024/04/27 18:32:25 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	stack_sorted(stack_node *a)
 	while (a && a->next)
 	{
 		if (a->num > a->next->num)
-			return (2);
+			return (0);
 		a = a->next;
 	}
 	return (1);

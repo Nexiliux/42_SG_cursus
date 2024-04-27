@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:36:20 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/27 17:21:32 by wchow            ###   ########.fr       */
+/*   Updated: 2024/04/27 19:13:31 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,25 @@ int	push(stack_node **stack_give, stack_node **stack_take);
 void	pa(stack_node **a, stack_node **b);
 void	pb(stack_node **a, stack_node **b);
 
-int	swap(stack_node **stack);
+int	swap(stack_node **stack); //swap first two elements
 void	sa(stack_node **a);
 void	sb(stack_node **b);
 void	ss(stack_node **a, stack_node **b);
 
-int	rotate(stack_node **stack);
+int	rotate(stack_node **stack); //shift up all elements by 1. The first element becomes last.
 void	ra(stack_node **a);
 void	rb(stack_node **b);
 void	rr(stack_node **a, stack_node **b);
 
-int	revrotate(stack_node **stack);
+int	revrotate(stack_node **stack); //shift down all elements by 1. The last element becomes first.
 void	rra(stack_node **a);
 void	rrb(stack_node **b);
 void	rrr(stack_node **a, stack_node **b);
+
+//Sorting
+stack_node	*sort_3(stack_node *a);
+
+//Utilities
+int	stack_sorted(stack_node *a);
 
 #endif

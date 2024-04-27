@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:24:56 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/27 17:57:06 by wchow            ###   ########.fr       */
+/*   Updated: 2024/04/27 19:15:28 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,40 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	init(&a, argc, argv);
+	if (!stack_sorted(a))
+	{
+		if (ft_lstsize2(a) == 2)
+			ra(&a);
+		else if (ft_lstsize2(a) == 3)
+			a = sort_3(a);
+		/* else
+			sort_stack(&a); */
+	}
+	ft_printf("Stack is sorted!\n");
+	ft_printf("Starting struct values:\n");
+	testA = a;
+	testB = b;
+	ft_printf("Stack A values:\n");
+	while (testA)
+	{
+
+		ft_printf("Index[%d]	Num = %d\n", testA->index, testA->num);
+		testA = testA->next;
+	}
+	ft_printf("Stack B values:\n");
+	while (testB)
+	{
+
+		ft_printf("Index[%d]	Num = %d\n", testB->index, testB->num);
+		testB = testB->next;
+	}
+	return (0);
+}
+	//TESTS FOR COMMANDS:
+/*	
+	stack_node *testA;
+	stack_node *testB;
+
 	testA = a;
 	testB = b;
 	ft_printf("Starting struct values:\n");
@@ -159,6 +193,4 @@ int	main(int argc, char **argv)
 		testB = testB->next;
 	}
 	ft_printf("REVERSE ROTATE TEST ENDED\n");
-	//ALL TESTS WORK with 'make re && ./push_swap 1 2 3 4 5 6 && ./push_swap "1 2 3 4 5 6"'
-	return (0);
-}
+	//ALL TESTS WORK with 'make re && ./push_swap 1 2 3 4 5 6 && ./push_swap "1 2 3 4 5 6"' */

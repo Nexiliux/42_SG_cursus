@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 17:47:59 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/27 17:49:27 by wchow            ###   ########.fr       */
+/*   Updated: 2024/04/27 18:08:03 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ stack_node	*init(stack_node **a, int argc, char **argv)
 	numbers = ft_parsing(argc, argv, numbers);
 
 	ft_printf("Numbers array starting to print:\n");
-	while (i < argc - 1)
+	while (i < argc)
 	{
 		ft_printf("Numbers[%d]: %d\n", i, numbers[i]);
 		i++;
