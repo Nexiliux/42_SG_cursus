@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:30:55 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/19 22:46:42 by wchow            ###   ########.fr       */
+/*   Updated: 2024/04/27 17:21:21 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	push(stack_node **stack_give, stack_node **stack_take)
 	return (0);
 }
 
-void	pa(stack_node **b, stack_node **a)
+void	pa(stack_node **a, stack_node **b)
 {
 	push(b, a);
 	ft_printf("pa\n");

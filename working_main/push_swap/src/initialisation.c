@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 17:47:59 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/19 23:08:25 by wchow            ###   ########.fr       */
+/*   Updated: 2024/04/27 17:49:27 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,16 @@ stack_node	*init(stack_node **a, int argc, char **argv)
 	else if (argc == 2)
 		argv = ft_split(argv[1], ' ');
 	
+	/* while (argv[i])
+	{
+		ft_printf("argv[%d] is: %d ", i, argv[i][0]);
+		i++;
+	}
+	ft_printf("\ni is: %d\n", i);
+	i = 0; */
+
 	argc = ft_count_ele(argv);
+	//ft_printf("\nargc after ft_count_ele is: %d\n", argc);
 	numbers = malloc((argc - 1) * sizeof(int));
 	numbers = ft_parsing(argc, argv, numbers);
 

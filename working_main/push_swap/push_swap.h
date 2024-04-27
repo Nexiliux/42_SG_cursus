@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:36:20 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/19 23:07:59 by wchow            ###   ########.fr       */
+/*   Updated: 2024/04/27 17:21:32 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_lstsize2(stack_node *lst);
 stack_node	*ft_lstlast2(stack_node *lst);
 
 int	push(stack_node **stack_give, stack_node **stack_take);
-void	pa(stack_node **b, stack_node **a);
+void	pa(stack_node **a, stack_node **b);
 void	pb(stack_node **a, stack_node **b);
 
 int	swap(stack_node **stack);
