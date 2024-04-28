@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:36:20 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/27 19:13:31 by wchow            ###   ########.fr       */
+/*   Updated: 2024/04/29 01:22:08 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	ft_lstsize2(stack_node *lst);
 stack_node	*ft_lstlast2(stack_node *lst);
 
 int	push(stack_node **stack_give, stack_node **stack_take);
-void	pa(stack_node **a, stack_node **b);
-void	pb(stack_node **a, stack_node **b);
+void	pa(stack_node **a, stack_node **b); //b to a
+void	pb(stack_node **a, stack_node **b); //a to b
 
 int	swap(stack_node **stack); //swap first two elements
 void	sa(stack_node **a);
@@ -58,6 +58,9 @@ void	rrr(stack_node **a, stack_node **b);
 
 //Sorting
 stack_node	*sort_3(stack_node *a);
+void	sort_5(stack_node **a, stack_node **b);
+void	sort_5_push(stack_node **a, stack_node **b, stack_node *sec, stack_node *smol);
+void	sort_5_setup(stack_node **a, stack_node *sec, stack_node *smol, int s);
 
 //Utilities
 int	stack_sorted(stack_node *a);
