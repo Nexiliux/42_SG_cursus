@@ -18,13 +18,16 @@ void	save_and_send(char c, int use)
 {
 	static char	*result = NULL;
 	static int	i = 0;
+	char		ch[2];
 	char		*temp;
 
+	ch[0] = c;
+	ch[1] = '\0';
 	if (!result && c && use == 1)
-		result = ft_strdup(&c);
+		result = ft_strdup(ch);
 	else if (result[i] && c && use == 1)
 	{
-		temp = ft_strjoin(result, &c);
+		temp = ft_strjoin(result, ch);
 		if (temp)
 			free(result);
 		result = temp;

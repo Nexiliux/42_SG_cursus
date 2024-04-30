@@ -118,3 +118,4 @@ void	sort_5_setup(stack_node **a, stack_node *sec, stack_node *smol, int s)
 	if (smol->index < 0 && smol->index < -2)
 		smol->index = s;
 }
+
