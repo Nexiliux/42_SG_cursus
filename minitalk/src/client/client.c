@@ -90,18 +90,21 @@ int	main(int argc, char **argv)
 {
 	struct sigaction	sa;
 
+	if (argc != 3 || !argv[2])
+	{
+		ft_printf("Usage: [./client] [server_pid] [your_message]\n");
+		exit(0);
+	}
+	if (ft_atoi(argv[1]) <= 0)
+	{
+		ft_printf("server_pid cannot be less than or equal to zero.\n");
+		exit(0);
+	}
 	sa.sa_handler = sig_handler;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
-	if (argc != 3 || !argv[2] || ft_atoi(argv[1]) <= 0)
-	{
-		ft_printf("Usage: [./client] [server_pid] [your_message]\n");
-		if (ft_atoi(argv[1]) <= 0)
-			ft_printf("server_pid cannot be less than or equal to zero.\n");
-		exit(0);
-	}
 	g_argv = argv;
 	if (g_argv[2][0] && g_argv[2][0] != '\0')
 		first_signal(g_argv[2][0], ft_atoi(g_argv[1]), 7);
