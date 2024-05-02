@@ -27,7 +27,6 @@ void	end_string(unsigned int server_pid)
 		i--;
 		usleep(1000);
 	}
-	exit(0);
 }
 
 void	send_bits(int server_pid, char message_char)
@@ -72,6 +71,12 @@ void	sig_handler(int sig)
 
 	server_pid = ft_atoi(g_argv[1]);
 	message = ft_strdup(g_argv[2]);
+	if (sig == SIGUSR2)
+	{
+		free(message);
+		ft_printf("Server acknowledges end of string. My time has come...\n");
+		exit(0);
+	}
 	if (sig == SIGUSR1 && message[i] == '\0')
 		end_string(server_pid);
 	else if (sig == SIGUSR1)

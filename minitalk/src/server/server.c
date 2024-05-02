@@ -77,7 +77,6 @@ int	main(void)
 	sigemptyset(&sa.sa_mask);
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
-
 	ft_printf("Server PID: %d\n", getpid());
 	while (1)
 		sleep(1);
