@@ -31,7 +31,7 @@ void	end_string(unsigned int server_pid)
 
 void	send_bits(int server_pid, char message_char)
 {
-	int	bits;
+	int		bits;
 	char	current_char;
 
 	current_char = message_char;
@@ -66,8 +66,8 @@ void	first_signal(char first_char, unsigned int server_pid, int bits)
 void	sig_handler(int sig)
 {
 	unsigned int	server_pid;
-	static int	i = 1;
-	char		*message;
+	static int		i = 1;
+	char			*message;
 
 	server_pid = ft_atoi(g_argv[1]);
 	message = ft_strdup(g_argv[2]);
