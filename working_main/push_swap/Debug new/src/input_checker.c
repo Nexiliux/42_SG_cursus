@@ -27,13 +27,13 @@ void	ft_check_dupes(int *numbers, int argc)
 		{
 			if (j == i)
 				j++;
+			if (j > argc)
+				break ;
 			if (numbers[i] == numbers[j])
 			{
 				ft_printf("Error\n");
 				exit(3);
 			}
-			if (j > argc)
-				break ;
 			j++;
 		}
 		i++;
@@ -113,8 +113,8 @@ int	*ft_parsing(int argc, char **argv, int *numbers)
 
 	i = 0;
 	arg = argv + 1;
-	//if ((ft_strncmp(argv[0], "./push_swap", 11)) != 0)
-	//	arg = argv;
+	if ((ft_strncmp(argv[0], "./push_swap", 11)) != 0)
+		arg = argv;
 	ft_check_digit(arg);
 	ft_check_size(arg);
 	while (arg[i])
@@ -122,7 +122,7 @@ int	*ft_parsing(int argc, char **argv, int *numbers)
 		numbers[i] = ft_atoi(arg[i]);
 		i++;
 	}
-	ft_check_dupes(numbers, argc);
+	ft_check_dupes(numbers, argc - 1);
 
 	return (numbers);
 }

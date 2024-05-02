@@ -14,42 +14,6 @@
 #include "../printf/includes/ft_printf.h"
 #include "../push_swap.h"
 
-//Determine biggest number, rotate biggest number to top, then find the next biggest number
-//Find next biggest number then return to function that if num == NBN then perform rotate to top
-//find out number of rotations based on if below/higher than median
-//if below/== median then just ra the current index
-//if above median take current element counts then minus current index, rra + 1 that amount 
-//refresh node every time pb, to update median and boolean for each number.
-//if not optimized:
-//Find smallest number, compare move price between biggest/smallest, then move the one that has smallest move price
-//IF SMALLEST NUMBER IS PUSHED: after pushing, we ra stack A so that we move the smallest number down, since a stack is circly linked.
-//After all elements are pushed into A, check if sorted. If not, then we will find smallest number, then basically use same algo to move smallest up to the top.
-//IF BIGGEST NUMBER IS PUSHED: continue with the sorting, nothing changes.
-void	sort_stack(stack_node **a, stack_node **b)
-{
-	stack_node	*big;
-	stack_node	*smol;
-
-	while (*a)
-		pb(a,b);
-	while (*b)
-	{
-		refresh(b); //set index, boolean & price
-		big = biggest(b);
-		smol = smallest(b);
-		action(big, smol, a, b);
-	}
-	while (!stack_sorted(*a))
-	{
-		smol = smallest(a);
-		if (smol->above_mid)
-			rra(a);
-		else
-			ra(a);
-	}
-}
-		
-
 stack_node	*sort_3(stack_node *a)
 {
 	if (a->num > a->next->num && a->num > a->next->next->num) //biggest on top

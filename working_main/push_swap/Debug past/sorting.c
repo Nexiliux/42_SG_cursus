@@ -66,6 +66,9 @@ void	sort_5(stack_node **a, stack_node **b)
     head = head->next;      // Move to the next node
 }
 
+	if (ft_lstsize2(*a) == 4)
+		second = smallest;
+
 	ft_printf("Second:[%d]	Smallest:[%d]\n", second->num, smallest->num);
 
 	sort_5_push(a, b, second, smallest);
@@ -116,8 +119,8 @@ void	sort_5(stack_node **a, stack_node **b)
 	}
 	ft_printf("current size of B is: %d\n", ft_lstsize2(*b));
 	
-	pa(a, b);
-	pa(a, b);
+	while (ft_lstsize2(*b) > 0)
+		pa(a, b);
 }
 
 /* void	sort_5_push(stack_node **a, stack_node **b, stack_node *sec, stack_node *smol)

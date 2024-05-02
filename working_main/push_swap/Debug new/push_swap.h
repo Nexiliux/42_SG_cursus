@@ -20,8 +20,6 @@ typedef struct stack_node
 {
 	int	num;
 	int	index;
-	int	above_mid; //whether the index # is more than median
-	int	move_price;
 	struct stack_node *next;
 	struct stack_node *prev;
 } stack_node;
@@ -59,17 +57,10 @@ void	rrb(stack_node **b);
 void	rrr(stack_node **a, stack_node **b);
 
 //Sorting
-void	sort_stack(stack_node **a, stack_node **b);
-void	refresh(stack_node **node);
-stack_node	*biggest(stack_node **node);
-stack_node	*smallest(stack_node **node);
-void	action(stack_node *big, stack_node *smol, stack_node **a, stack_node **b);
-
+stack_node	*sort_3(stack_node *a);
 void	sort_5(stack_node **a, stack_node **b);
 void	sort_5_push(stack_node **a, stack_node **b, stack_node *sec, stack_node *smol);
 void	sort_5_setup(stack_node **a, stack_node *sec, stack_node *smol, int s);
-
-stack_node	*sort_3(stack_node *a);
 
 //Utilities
 int	stack_sorted(stack_node *a);
