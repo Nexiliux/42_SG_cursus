@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 17:47:59 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/27 18:08:03 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/03 02:05:47 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ stack_node	*init_stack(int *numbers, int size)
 	stack_node	*tail;
 	int	i;
 
-	i = 0;
+	i = -1;
 	head = NULL;
 	tail = NULL;
-	while (i < size)
+	while (++i < size)
 	{
 		stack_node *new_node = (stack_node *)malloc(sizeof(stack_node));
 		if (new_node == NULL)
@@ -43,21 +43,15 @@ stack_node	*init_stack(int *numbers, int size)
 			tail->next = new_node;
 			tail = new_node;
 		}
-		i++; // Move to the next element in the array
 	}
 	return (head); // Return the head of the list
 }
 
-stack_node	*init(stack_node **a, int argc, char **argv)
+stack_node	*init(stack_node **a, char **split)
 {
 	int	*numbers;
-	int	i = 0;
+	int	elecount;
 
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (0);
-	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	
 	/* while (argv[i])
 	{
 		ft_printf("argv[%d] is: %d ", i, argv[i][0]);
@@ -66,18 +60,21 @@ stack_node	*init(stack_node **a, int argc, char **argv)
 	ft_printf("\ni is: %d\n", i);
 	i = 0; */
 
-	argc = ft_count_ele(argv);
+	elecount = ft_count_ele(split);
 	//ft_printf("\nargc after ft_count_ele is: %d\n", argc);
-	numbers = malloc((argc - 1) * sizeof(int));
-	numbers = ft_parsing(argc, argv, numbers);
+	numbers = malloc(elecount * sizeof(int));
+	numbers = ft_parsing(elecount, split, numbers);
 
+	/*
+	int	i = 0; 
 	ft_printf("Numbers array starting to print:\n");
-	while (i < argc)
+	while (i < elecount)
 	{
 		ft_printf("Numbers[%d]: %d\n", i, numbers[i]);
 		i++;
-	}
+	} */
 
-	*a = init_stack(numbers, argc);
+	*a = init_stack(numbers, elecount);
+	free(numbers);
 	return (*a);
 }

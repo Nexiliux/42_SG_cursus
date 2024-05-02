@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:51:29 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/27 17:48:51 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/03 00:50:20 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 #include "../printf/includes/ft_printf.h"
 #include "../push_swap.h"
 
-int	ft_count_ele(char **argv)
+int	ft_count_ele(char **split)
 {
 	int	i;
 
 	i = 0;
-	while (argv[i])
+	while (split[i])
 		i++;
-	if ((ft_strncmp(argv[0], "./push_swap", 11)) != 0) //if ./push_swap exists, add 1 to argc. Basically it's just because of ft_split essentially removing program name
-		i++;
-	return (i - 1); //return all inputs including ./push_swap
+	return (i);
 }
 
 int	ft_lstsize2(stack_node *lst)

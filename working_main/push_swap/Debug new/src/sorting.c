@@ -6,13 +6,72 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 18:43:46 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/29 02:09:24 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/03 01:38:21 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../printf/includes/ft_printf.h"
 #include "../push_swap.h"
+
+//Determine biggest number, rotate biggest number to top, then find the next biggest number
+//Find next biggest number then return to function that if num == NBN then perform rotate to top
+//find out number of rotations based on if below/higher than median
+//if below/== median then just ra the current index
+//if above median take current element counts then minus current index, rra + 1 that amount 
+//refresh node every time pb, to update median and boolean for each number.
+//if not optimized:
+//Find smallest number, compare move price between biggest/smallest, then move the one that has smallest move price
+//IF SMALLEST NUMBER IS PUSHED: after pushing, we ra stack A so that we move the smallest number down, since a stack is circly linked.
+//After all elements are pushed into A, check if sorted. If not, then we will find smallest number, then basically use same algo to move smallest up to the top.
+//IF BIGGEST NUMBER IS PUSHED: continue with the sorting, nothing changes.
+void	sort_stack(stack_node **a, stack_node **b)
+{
+stack_node *testA;
+	stack_node *testB;
+
+
+
+	stack_node	*big;
+	stack_node	*smol;
+
+	int	i = ft_lstsize2(*a) + 1;
+	while (*a)
+		pb(a,b);
+	while (*b)
+	{
+		refresh(b); //set index, boolean & price
+		big = biggest(b);
+		smol = smallest(b);
+		action(big, smol, a, b);
+	ft_printf("Sortstack values:\n");
+	testA = *a;
+	testB = *b;
+	ft_printf("Stack A values:\n");
+	while (testA)
+	{
+
+		ft_printf("Index[%d]	Num = %d\n", testA->index, testA->num);
+		testA = testA->next;
+	}
+	ft_printf("Stack B values:\n");
+	while (testB)
+	{
+
+		ft_printf("Index[%d]	Num = %d\n", testB->index, testB->num);
+		testB = testB->next;
+	}
+	}
+	while (!stack_sorted(*a) && --i)
+	{
+		smol = smallest(a);
+		if (smol->above_mid)
+			rra(a);
+		else
+			ra(a);
+	}
+}
+		
 
 stack_node	*sort_3(stack_node *a)
 {

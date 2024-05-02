@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:36:20 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/29 01:22:08 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/03 00:52:40 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct stack_node
 } stack_node;
 
 //Initialisation
-stack_node	*init(stack_node **a, int argc, char **argv);
-int	*ft_parsing(int argc, char **argv, int *numbers);
+stack_node	*init(stack_node **a, char **split);
+int	*ft_parsing(int elecount, char **split, int *numbers);
 int	ft_count_ele(char **argv);
 void	ft_check_digit(char **arg);
 void	ft_check_size(char **arg);

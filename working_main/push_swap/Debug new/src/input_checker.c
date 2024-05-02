@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 14:17:31 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/13 17:42:26 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/03 00:53:08 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	ft_check_dupes(int *numbers, int argc)
 		{
 			if (j == i)
 				j++;
-			if (j > argc)
-				break ;
 			if (numbers[i] == numbers[j])
 			{
 				ft_printf("Error\n");
 				exit(3);
 			}
+			if (j > argc)
+				break ;
 			j++;
 		}
 		i++;
@@ -106,23 +106,18 @@ void	ft_check_digit(char **arg)
 	}
 }
 
-int	*ft_parsing(int argc, char **argv, int *numbers)
+int	*ft_parsing(int elecount, char **split, int *numbers)
 {
-	char	**arg;
 	int	i;
 
 	i = 0;
-	arg = argv + 1;
-	if ((ft_strncmp(argv[0], "./push_swap", 11)) != 0)
-		arg = argv;
-	ft_check_digit(arg);
-	ft_check_size(arg);
-	while (arg[i])
+	ft_check_digit(split);
+	ft_check_size(split);
+	while (split[i])
 	{
-		numbers[i] = ft_atoi(arg[i]);
+		numbers[i] = ft_atoi(split[i]);
 		i++;
 	}
-	ft_check_dupes(numbers, argc - 1);
-
+	ft_check_dupes(numbers, elecount);
 	return (numbers);
 }

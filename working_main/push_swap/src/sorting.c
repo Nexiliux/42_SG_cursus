@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 18:43:46 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/29 02:09:24 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/03 02:03:14 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,13 @@
 //IF BIGGEST NUMBER IS PUSHED: continue with the sorting, nothing changes.
 void	sort_stack(stack_node **a, stack_node **b)
 {
+	//stack_node *testA;
+	//stack_node *testB;
+
 	stack_node	*big;
 	stack_node	*smol;
 
+	int	i = ft_lstsize2(*a) + 1;
 	while (*a)
 		pb(a,b);
 	while (*b)
@@ -38,8 +42,25 @@ void	sort_stack(stack_node **a, stack_node **b)
 		big = biggest(b);
 		smol = smallest(b);
 		action(big, smol, a, b);
+	/* ft_printf("Sortstack values:\n");
+	testA = *a;
+	testB = *b;
+	ft_printf("Stack A values:\n");
+	while (testA)
+	{
+
+		ft_printf("Index[%d]	Num = %d\n", testA->index, testA->num);
+		testA = testA->next;
 	}
-	while (!stack_sorted(*a))
+	ft_printf("Stack B values:\n");
+	while (testB)
+	{
+
+		ft_printf("Index[%d]	Num = %d\n", testB->index, testB->num);
+		testB = testB->next;
+	} */
+	}
+	while (!stack_sorted(*a) && --i)
 	{
 		smol = smallest(a);
 		if (smol->above_mid)
