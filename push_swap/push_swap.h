@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:36:20 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/05 17:07:12 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/05 17:20:31 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ typedef struct s_lst
 t_lst	*init(t_lst **a, char **split);
 int	*ft_parsing(int elecount, char **split, int *numbers);
 int	ft_count_ele(char **argv);
-void	ft_check_digit(char **arg);
-void	ft_check_size(char **arg);
+int	ft_check_digit(char **arg);
+int	ft_check_size(char **arg);
 long	ft_strtol(const char *nptr);
-void	ft_check_dupes(int *numbers, int argc);
+int	ft_check_dupes(int *numbers, int argc);
 
 //Commands
 int	ft_lstsize2(t_lst *lst);
@@ -81,5 +81,6 @@ t_lst	*sort_3(t_lst *a);
 int	stack_sorted(t_lst *a);
 void	choose_sort(t_lst **a, t_lst **b);
 void	ft_free(t_lst *a, t_lst *b);
+void	ft_error(void *a, void *b, void *c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 14:17:31 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/05 16:59:14 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/05 17:20:06 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../printf/includes/ft_printf.h"
 #include "../push_swap.h"
 
-void	ft_check_dupes(int *numbers, int argc)
+int	ft_check_dupes(int *numbers, int argc)
 {
 	int	i;
 	int	j;
@@ -32,12 +32,13 @@ void	ft_check_dupes(int *numbers, int argc)
 			if (numbers[i] == numbers[j])
 			{
 				ft_printf("Error\n");
-				return ;
+				return (0);
 			}
 			j++;
 		}
 		i++;
 	}
+	return (1);
 }
 
 long	ft_strtol(const char *nptr)
@@ -66,7 +67,7 @@ long	ft_strtol(const char *nptr)
 	return (result * sign);
 }
 
-void	ft_check_size(char **arg)
+int	ft_check_size(char **arg)
 {
 	int		i;
 	long	num;
@@ -78,13 +79,14 @@ void	ft_check_size(char **arg)
 		if (num < -2147483648 || num > 2147483647)
 		{
 			ft_printf("Error\n");
-			return ;
+			return (0);
 		}
 		i++;
 	}
+	return (1);
 }
 
-void	ft_check_digit(char **arg)
+int	ft_check_digit(char **arg)
 {
 	int	i;
 	int	j;
@@ -98,12 +100,13 @@ void	ft_check_digit(char **arg)
 			if (ft_isdigit(arg[i][j]) == 0)
 			{
 				ft_printf("Error\n");
-				return ;
+				return (0);
 			}
 			j++;
 		}
 		i++;
 	}
+	return (1);
 }
 
 int	*ft_parsing(int elecount, char **split, int *numbers)
@@ -111,13 +114,16 @@ int	*ft_parsing(int elecount, char **split, int *numbers)
 	int	i;
 
 	i = 0;
-	ft_check_digit(split);
-	ft_check_size(split);
+	if (!ft_check_digit(split))
+		return (0);
+	if (!ft_check_size(split))
+		return (0);
 	while (split[i])
 	{
 		numbers[i] = ft_atoi(split[i]);
 		i++;
 	}
-	ft_check_dupes(numbers, elecount);
+	if (!ft_check_dupes(numbers, elecount))
+		return (0);
 	return (numbers);
 }

@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 17:47:59 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/05 16:58:38 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/05 17:21:01 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ t_lst	*init(t_lst **a, char **split)
 	if (!numbers)
 		return (0);
 	numbers = ft_parsing(elecount, split, numbers);
+	if (!numbers)
+	{
+		ft_free(*a, NULL);
+		ft_error(numbers, NULL, NULL);
+	}
 	*a = init_stack(numbers, elecount);
 	free(numbers);
 	return (*a);
