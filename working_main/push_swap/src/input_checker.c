@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 14:17:31 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/03 00:53:08 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/05 14:59:56 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@ void	ft_check_dupes(int *numbers, int argc)
 	int	j;
 
 	i = 0;
-	while (i < argc && argc > 1)
+	while (i < argc - 1)
 	{
 		j = 0;
 		while (j < argc)
 		{
 			if (j == i)
 				j++;
+			if (j > argc)
+				break ;
 			if (numbers[i] == numbers[j])
 			{
 				ft_printf("Error\n");
-				exit(3);
+				return ;
 			}
-			if (j > argc)
-				break ;
 			j++;
 		}
 		i++;
@@ -78,7 +78,7 @@ void	ft_check_size(char **arg)
 		if (num < -2147483648 || num > 2147483647)
 		{
 			ft_printf("Error\n");
-			exit(2);
+			return ;
 		}
 		i++;
 	}
@@ -98,7 +98,7 @@ void	ft_check_digit(char **arg)
 			if (ft_isdigit(arg[i][j]) == 0)
 			{
 				ft_printf("Error\n");
-				exit(1);
+				return ;
 			}
 			j++;
 		}

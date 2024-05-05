@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:51:29 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/03 00:50:20 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/05 16:07:31 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,32 @@ stack_node	*ft_lstlast2(stack_node *lst)
 	while (lst->next)
 		lst = lst->next;
 	return (lst);
+}
+
+void	ft_free(stack_node *a, stack_node *b)
+{
+	stack_node	*tofree;
+	stack_node	*temp;
+
+	if (a)
+	{
+		tofree = a;
+		while (tofree)
+		{
+			temp = tofree;
+			tofree = tofree->next;
+			free(temp);
+		}
+	}
+	if (b)
+	{
+		tofree = b;
+		while (tofree)
+		{
+			temp = tofree;
+			tofree = tofree->next;
+			free(temp);
+		}
+	}
+	return ;
 }

@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra -Werror -ggdb3
 LDFLAGS += -L./libft -L./printf
 LIBS += -lft -lftprintf
 

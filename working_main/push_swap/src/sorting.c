@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 18:43:46 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/03 02:03:14 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/05 14:30:53 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,59 +14,28 @@
 #include "../printf/includes/ft_printf.h"
 #include "../push_swap.h"
 
-//Determine biggest number, rotate biggest number to top, then find the next biggest number
-//Find next biggest number then return to function that if num == NBN then perform rotate to top
-//find out number of rotations based on if below/higher than median
-//if below/== median then just ra the current index
-//if above median take current element counts then minus current index, rra + 1 that amount 
-//refresh node every time pb, to update median and boolean for each number.
-//if not optimized:
-//Find smallest number, compare move price between biggest/smallest, then move the one that has smallest move price
-//IF SMALLEST NUMBER IS PUSHED: after pushing, we ra stack A so that we move the smallest number down, since a stack is circly linked.
-//After all elements are pushed into A, check if sorted. If not, then we will find smallest number, then basically use same algo to move smallest up to the top.
-//IF BIGGEST NUMBER IS PUSHED: continue with the sorting, nothing changes.
-void	sort_stack(stack_node **a, stack_node **b)
+/* The idea is to group numbers based on the smallest value first, 
+the number of elements in a group is hardcoded.
+The elements pushed will not be semi-sorted, in the sense where when a number from that group is pushed, 
+it is checked against the median in the group. Stack B is rotated based on whether the element is 
+higher or lower than the median. This further groups the numbers. */
+//Find smallest first, then use smallest->num to count grouping # to find the biggest number in the group
+//move up and push #groupcount# number of times anything below the biggest in the group
+//whenever a number is pushed, the median boolean (which is set beforehand) is used to determine whether
+//stack B is rotated after pushing. This further sorts each group by above or below median.
+
+
+void	sort_stack(stack_node **a, stack_node **b, int gcount)
 {
-	//stack_node *testA;
-	//stack_node *testB;
 
-	stack_node	*big;
-	stack_node	*smol;
-
-	int	i = ft_lstsize2(*a) + 1;
 	while (*a)
-		pb(a,b);
+	{
+		set_gmedian(a, gcount);
+		first_action(a, b, gcount);
+	}
 	while (*b)
 	{
-		refresh(b); //set index, boolean & price
-		big = biggest(b);
-		smol = smallest(b);
-		action(big, smol, a, b);
-	/* ft_printf("Sortstack values:\n");
-	testA = *a;
-	testB = *b;
-	ft_printf("Stack A values:\n");
-	while (testA)
-	{
-
-		ft_printf("Index[%d]	Num = %d\n", testA->index, testA->num);
-		testA = testA->next;
-	}
-	ft_printf("Stack B values:\n");
-	while (testB)
-	{
-
-		ft_printf("Index[%d]	Num = %d\n", testB->index, testB->num);
-		testB = testB->next;
-	} */
-	}
-	while (!stack_sorted(*a) && --i)
-	{
-		smol = smallest(a);
-		if (smol->above_mid)
-			rra(a);
-		else
-			ra(a);
+		second_action(a, b);
 	}
 }
 		
