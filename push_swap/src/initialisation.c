@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 17:47:59 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/05 17:21:01 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/05 17:33:42 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,14 @@ t_lst	*init(t_lst **a, char **split)
 	numbers = malloc(elecount * sizeof(int));
 	if (!numbers)
 		return (0);
-	numbers = ft_parsing(elecount, split, numbers);
-	if (!numbers)
+	if (!ft_parsing(elecount, split, numbers))
 	{
 		ft_free(*a, NULL);
-		ft_error(numbers, NULL, NULL);
+		free(numbers);
+		return (0);
 	}
+	else
+		numbers = ft_parsing(elecount, split, numbers);
 	*a = init_stack(numbers, elecount);
 	free(numbers);
 	return (*a);

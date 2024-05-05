@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:51:29 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/05 17:15:47 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/05 17:35:37 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,4 @@ void	ft_free(t_lst *a, t_lst *b)
 		}
 	}
 	return ;
-}
-
-void	ft_error(void *a, void *b, void *c)
-{
-	if (a)
-	{
-		free(a);
-		a = NULL;
-	}
-	if (b)
-	{
-		free(b);
-		a = NULL;
-	}
-	if (c)
-	{
-		free(c);
-		a = NULL;
-	}
-	exit (-1);
 }
