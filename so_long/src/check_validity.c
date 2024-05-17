@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:46:08 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/16 14:17:28 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/17 21:30:05 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,19 +112,19 @@ int	check_walls(t_god *god, int i, int j)
 }
 void	find_player(t_god *god)
 {
-	int	i;
-	int	j;
+	int	row;
+	int	col;
 
-	i = -1;
-	while(god->map[++i])
+	row = -1;
+	while(god->map[++row])
 	{
-		j = -1;
-		while(god->map[i][++j])
+		col = -1;
+		while(god->map[row][++col])
 		{
-			if (god->map[i][j] == 'P')
+			if (god->map[row][col] == 'P')
 			{
-				god->player_y = i;
-				god->player_x = j;
+				god->player_x = col;
+				god->player_y = row;
 			}
 		}
 	}
@@ -147,6 +147,8 @@ void	map_size(t_god *god)
 
 int	floodfill(char **map, int x, int y, t_god *god)
 {
+	//if E is untraveseable then adjust floodfill logic accordingly
+	//If 
 	int	count;
 	int	rows;
 	int	cols;

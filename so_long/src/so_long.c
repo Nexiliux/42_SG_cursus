@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:57:21 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/16 19:06:20 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/17 21:33:18 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,19 @@ int	key_hook(int keycode, t_god *god)
 		|| keycode == XK_d)
 	{
 		printf("wasd pressed. \n");
-		if (keycode == XK_w && (god->testY - 40 >= 0))
-			god->testY -= 40;
-		if (keycode == XK_s && (god->testY + 40 <= 680))
-			god->testY += 40;
-		if (keycode == XK_a && (god->testX - 40 >= 0))
-			god->testX -= 40;
-		if (keycode == XK_d && (god->testX + 40 <= 1240))
-			god->testX += 40;
+		if (keycode == XK_w && (god->testY - 64 >= 0))
+			god->testY -= 64;
+		if (keycode == XK_s && (god->testY + 64 <= god->resY - 64))
+			god->testY += 64;
+		if (keycode == XK_a && (god->testX - 64 >= 0))
+			god->testX -= 64;
+		if (keycode == XK_d && (god->testX + 64 <= god->resX - 64))
+			god->testX += 64;
 		printf("testX: %d\n", god->testX);
 		printf("testY: %d\n", god->testY);
+		//god->player_x = god->textY / 64 - 1 for playerpos;
+		//god->textX / 64 - 1 for playerpos;
+		//update_map(god, keycode);
 		render_next_frame(god);
 	}
 	return (0);
@@ -47,14 +50,6 @@ int	exit_button(t_god *god)
 	printf("Exit cross pressed. Shutting down.\n");
 	exit(0);
 }
-
-/*void	ft_mlx_pixel_put(t_god *data, int x, int y, int color)
-{
-	char	*dst;
-	
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}*/
 
 char	**parse_map(char *arg)
 {
@@ -82,38 +77,27 @@ char	**parse_map(char *arg)
 	return (result);
 }
 
+/* void	update_map(t_god *god, int keycode)
+{
+	map[x][y] == 'C'
+	if (map[x][y] == 'e' && god->collectibles <= 0)
+		exit game
+} */
+
 int	render_next_frame(t_god *god)
 {
-	//mlx_destroy_image(god->mlx,god->img);
-	//god->img = mlx_new_image(god->mlx, 1280, 720);
-	//god->addr = mlx_get_data_addr(god->img, &god->bits_per_pixel, &god->line_length, &god->endian);
 	int	x = god->testX;// + 40;
 	int	y = god->testY;// + 40;
-	/*int	solidx = 40;
-	int	solidy = 40;
-	while (solidy != 0)
-	{
-		solidx = 40;
-		while (solidx != 0)
-		{
-			ft_mlx_pixel_put(god, solidx, solidy, 0x00FFFFFF);
-			solidx--;
-		}
-		solidy--;
-	}*/
-	/* while (y != god->testY)
-	{
-		x = god->testX + 40;
-		while (x != god->testX)
-		{
-			ft_mlx_pixel_put(god, x, y, 0x0000FFFF);
-			x--;
-		}
-		y--;
-	} */
-	//ft_printf("In render next frame: x: %d y: %d\n", x, y);
+	
+	//draw_map(god);
+	//mlx_put_image_to_window(god->mlx, god->win, god->tile, x, y);
 	mlx_put_image_to_window(god->mlx, god->win, god->player, x, y);
 	return (0);
+}
+
+void	load_textures(t_god *god, int i)
+{
+	god->player = mlx_xpm_file_to_image(god->mlx, "textures/imposter_chizz.xpm", &i, &i);
 }
 
 /* Theme: AMONG US, make the player the imposter then eat the normal crewmates, exit is vent*/
@@ -137,30 +121,13 @@ int	main(int argc, char **argv)
 		free (god);
 		return (69);
 	}
+	god->resX = 64 * god->cols;
+	god->resY = 64 * god->rows;
 
 	god->mlx = mlx_init();
-	god->win = mlx_new_window(god->mlx, 1280, 720, "Whaddup");
-	//god->img = mlx_new_image(god->mlx, 1280, 720);
-	//god->addr = mlx_get_data_addr(god->img, &god->bits_per_pixel, &god->line_length, &god->endian);
-
-	int	x = god->testX + 24;
-	//int	y = god->testY + 30;
+	god->win = mlx_new_window(god->mlx, god->resX, god->resY, "Whaddup");
+	load_textures(god, 24);
 	
- 	/*while (y != god->testY)
-	{
-		x = god->testX + 30;
-		while (x != god->testX)
-		{
-			ft_mlx_pixel_put(god, x, y, 0x0000FFFF);
-			x--;
-		}
-		y--;
-	}*/
-	/*if (god->img == NULL)
-		return (69);
-	if (god->img == NULL)
-		return (69);*/
-	god->player = mlx_xpm_file_to_image(god->mlx, "us.xpm", &x, &x);
 	mlx_put_image_to_window(god->mlx, god->win, god->player, 0, 0);
 	mlx_hook(god->win, 17, 1L << 17, exit_button, god);
 	mlx_key_hook(god->win, key_hook, god);

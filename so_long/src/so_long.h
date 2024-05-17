@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:45:52 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/16 18:58:12 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/17 21:21:07 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,35 @@
 #include "../libft/libft.h"
 #include "../printf/includes/ft_printf.h"
 
+#define WIDTH 1280
+#define HEIGHT 720
+
 typedef struct s_god
 {
+	//MLX innit
 	void	*mlx;
 	void	*win;
 	char	**map;
-	void	*img;
+	//Textures
 	void	*player;
+	void	*crew;
+	void	*wall;
+	void	*tile;
+	void	*vent;
 	char	*addr;
 	int	bits_per_pixel;
 	int	line_length;
 	int	endian;
-	int	collectibles;
+	//Semi Global Values
+	int	collectibles; //just use this then minus off when collected ingame
 	int	player_x;
 	int	player_y;
 	int	rows;
 	int	cols;
 	int	testX;
 	int	testY;
+	int	resX;
+	int	resY;
 }	t_god;
 
 //Hooks
