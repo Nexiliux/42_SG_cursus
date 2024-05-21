@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:45:52 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/19 18:08:28 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/21 20:37:32 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ typedef struct s_god
 	int	cols; //Map size in COLS meaning X axis
 	int	testX; //Player X pos in pixels
 	int	testY; //Player Y pos in pixels
-	int	resX;
+	int	resX; //starting Resolutions
 	int	resY;
+	int	exit; //for floodfill to find exit
 }	t_god;
 
 //Hooks
@@ -63,6 +64,10 @@ int	key_hook(int keycode, t_god *god);
 char	**parse_map(char *arg);
 int	check_map_validity(t_god *god);
 int	check_collect_validity(t_god *god);
+void	find_player(t_god *god);
+void	map_size(t_god *god);
+int	floodfill(char **map, int x, int y, t_god *god);
+//int	floodfill_exit(char **map, int x, int y, t_god *god);
 void	map_size(t_god *god);
 void	find_player(t_god *god);
 int	check_walls(t_god *god, int i, int j);

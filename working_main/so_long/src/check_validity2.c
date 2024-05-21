@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:17:23 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/21 15:12:38 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/21 20:35:20 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ void	map_size(t_god *god)
 	god->rows = rows;
 	god->cols = cols;
 }
-
-int	floodfill(char **map, int x, int y, t_god *god)
+/* int	floodfill_exit(char **map, int x, int y, t_god *god)
 {
 	int	count;
 	int	rows;
@@ -62,8 +61,32 @@ int	floodfill(char **map, int x, int y, t_god *god)
 	if (x < 0 || x >= rows || y < 0 || y >= cols || (map[x][y] != 'C'
 		&& map[x][y] != 'P' && map[x][y] != '0'))
 		return 0;
+	if (map[x][y] == 'E')
+		count = 1;
+	map[x][y] = 'V';
+	count += floodfill(map, x + 1, y, god);
+	count += floodfill(map, x - 1, y, god);
+	count += floodfill(map, x, y + 1, god);
+	count += floodfill(map, x, y - 1, god);
+	return (count);
+} */
+int	floodfill(char **map, int x, int y, t_god *god)
+{
+	int	count;
+	int	rows;
+	int	cols;
+
+	count = 0;
+	rows = god->rows;
+	cols = god->cols;
+	if (x < 0 || x >= rows || y < 0 || y >= cols || (map[x][y] != 'C'
+		&& map[x][y] != 'P' && map[x][y] != '0' && map[x][y] != 'E'))
+        	return 0;
 	if (map[x][y] == 'C')
 		count = 1;
+	if (map[x][y] == 'E')
+		{printf("E found\n");
+		god->exit = 1;}
 	map[x][y] = 'V';
 	count += floodfill(map, x + 1, y, god);
 	count += floodfill(map, x - 1, y, god);
@@ -96,6 +119,8 @@ int	check_collect_validity(t_god *god)
 
 	i = 0;
 	reachable = floodfill(copy, god->player_y, god->player_x, god);
+	//god->exit = floodfill_exit(copy, god->player_y, god->player_x, god);
+	printf("exit: %d\n", god->exit);
 	//ft_printf("Collectibles in map: %d\n", god->collectibles);
 	//ft_printf("Collectibles reachable: %d\n", reachable);
 	while (i < god->rows)

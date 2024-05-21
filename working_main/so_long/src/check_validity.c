@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:46:08 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/21 15:15:06 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/21 20:34:12 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,11 @@ int	check_map_validity(t_god *god)
 		printf("Error.\nMake sure surrounding walls are 1s.\n");
 		return (0);
 	}
-	if (!check_collect_validity(god))
+	if (!check_collect_validity(god) || god->exit < 1)
 	{
-		printf("Error\nMake sure all collectibles can be reached.\n");
+		if (god->exit < 1)
+			printf("test failed\n");
+		printf("Error\nMake sure all collectibles/exits can be reached.\n");
 		return (0);
 	}
 	return (1);

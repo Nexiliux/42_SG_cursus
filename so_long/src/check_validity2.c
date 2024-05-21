@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:17:23 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/21 15:12:38 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/21 20:38:17 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,12 @@ int	floodfill(char **map, int x, int y, t_god *god)
 	rows = god->rows;
 	cols = god->cols;
 	if (x < 0 || x >= rows || y < 0 || y >= cols || (map[x][y] != 'C'
-		&& map[x][y] != 'P' && map[x][y] != '0'))
-		return (0);
-	if (x < 0 || x >= rows || y < 0 || y >= cols || (map[x][y] != 'C'
-		&& map[x][y] != 'P' && map[x][y] != '0'))
+		&& map[x][y] != 'P' && map[x][y] != '0' && map[x][y] != 'E'))
 		return (0);
 	if (map[x][y] == 'C')
 		count = 1;
+	if (map[x][y] == 'E')
+		god->exit = 1;
 	map[x][y] = 'V';
 	count += floodfill(map, x + 1, y, god);
 	count += floodfill(map, x - 1, y, god);
