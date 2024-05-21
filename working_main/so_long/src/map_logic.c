@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 15:14:14 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/19 17:19:33 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/21 20:54:26 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ void	check_collision(t_god *god, int px, int py, int keycode)
 			god->testX += 64;
 		if (keycode == XK_d)
 			god->testX -= 64;
+	}
+	else
+	{
+		god->moves++;
+		ft_printf("Moves: %d\n", god->moves);
 	}
 }
 

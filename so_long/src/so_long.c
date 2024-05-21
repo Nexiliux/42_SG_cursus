@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:57:21 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/21 15:39:12 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/21 20:56:20 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	key_hook(int keycode, t_god *god)
 {
 	if (keycode == XK_Escape)
 	{
-		printf("Escape pressed. Shutting down.\n");
+		ft_printf("Escape pressed. Shutting down.\n");
 		exit_game(god, god->rows);
 	}
 	if (keycode == XK_w || keycode == XK_a || keycode == XK_s
@@ -68,7 +68,7 @@ int	main(int argc, char **argv)
 	god = malloc(sizeof(t_god));
 	if (argc != 2)
 	{
-		printf("Error.\nYou can only input 2 arguments\n");
+		ft_printf("Error.\nYou can only input 2 arguments\n");
 		return (0);
 	}
 	god_init(god);

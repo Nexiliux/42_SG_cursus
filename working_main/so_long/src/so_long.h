@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:45:52 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/21 20:37:32 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/21 20:53:44 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_god
 	int	resX; //starting Resolutions
 	int	resY;
 	int	exit; //for floodfill to find exit
+	int	moves; //# of moves
 }	t_god;
 
 //Hooks

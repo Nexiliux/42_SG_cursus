@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:45:52 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/21 20:36:40 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/21 20:56:39 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_god
 	int		res_x;
 	int		res_y;
 	int		exit;
+	int		moves;
 }	t_god;
 
 //Hooks

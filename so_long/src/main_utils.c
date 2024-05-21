@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:07:15 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/21 15:39:12 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/21 20:56:20 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	exit_button(t_god *god)
 {
-	printf("Exit cross pressed. Shutting down.\n");
+	ft_printf("Exit cross pressed. Shutting down.\n");
 	exit_game(god, god->rows);
 	return (0);
 }

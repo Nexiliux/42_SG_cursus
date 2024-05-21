@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:46:08 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/21 20:38:51 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/21 20:56:20 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	check_elements(t_god *god)
 				j++;
 			else
 			{
-				printf("Error.\nUse only 1, 0, P, C and E.\n");
+				ft_printf("Error.\nUse only 1, 0, P, C and E.\n");
 				return (0);
 			}
 		}
@@ -120,19 +120,19 @@ int	check_map_validity(t_god *god)
 		return (0);
 	if (!check_amounts(god, 0, 0, 0))
 	{
-		printf("Error.\nInvalid amounts of player/element/collectibles.\n");
+		ft_printf("Error.\nInvalid amounts of player/element/collectibles.\n");
 		return (0);
 	}
 	if (!check_elements(god))
 		return (0);
 	if (!check_walls(god, 1, 0))
 	{
-		printf("Error.\nMake sure surrounding walls are 1s.\n");
+		ft_printf("Error.\nMake sure surrounding walls are 1s.\n");
 		return (0);
 	}
 	if (!check_collect_validity(god) || god->exit < 1)
 	{
-		printf("Error\nMake sure all collectibles/exits can be reached.\n");
+		ft_printf("Error\nMake sure all collectibles/exits can be reached.\n");
 		return (0);
 	}
 	return (1);
