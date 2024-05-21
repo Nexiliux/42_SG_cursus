@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 15:20:09 by wchow             #+#    #+#             */
-/*   Updated: 2024/04/27 14:40:09 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/21 16:24:28 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,11 @@ void	sig_handler(int sig)
 {
 	unsigned int	server_pid;
 	static int		i = 1;
-	char			*message;
+	static char			*message = NULL;
 
 	server_pid = ft_atoi(g_argv[1]);
-	message = ft_strdup(g_argv[2]);
+	if (!message)
+		message = ft_strdup(g_argv[2]);
 	if (sig == SIGUSR2)
 	{
 		free(message);
