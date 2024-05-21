@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:57:21 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/21 15:12:09 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/21 15:39:12 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,35 +22,27 @@ int	key_hook(int keycode, t_god *god)
 	if (keycode == XK_w || keycode == XK_a || keycode == XK_s
 		|| keycode == XK_d)
 	{
-		if (keycode == XK_w && (god->testY - 64 >= 0))
-			god->testY -= 64;
-		if (keycode == XK_s && (god->testY + 64 <= god->resY - 64))
-			god->testY += 64;
-		if (keycode == XK_a && (god->testX - 64 >= 0))
-			god->testX -= 64;
-		if (keycode == XK_d && (god->testX + 64 <= god->resX - 64))
-			god->testX += 64;
-		//printf("testX: %d\n", god->testX);
-		//printf("testY: %d\n", god->testY);
-		check_collision(god, god->testX / 64, god->testY / 64, keycode);
-		//printf("After collision check X: %d\n", god->testX);
-		//printf("After collision check Y: %d\n", god->testY);
-		update_map(god, god->testX / 64, god->testY / 64);
+		if (keycode == XK_w && (god->test_y - 64 >= 0))
+			god->test_y -= 64;
+		if (keycode == XK_s && (god->test_y + 64 <= god->res_y - 64))
+			god->test_y += 64;
+		if (keycode == XK_a && (god->test_x - 64 >= 0))
+			god->test_x -= 64;
+		if (keycode == XK_d && (god->test_x + 64 <= god->res_x - 64))
+			god->test_x += 64;
+		check_collision(god, god->test_x / 64, god->test_y / 64, keycode);
+		update_map(god, god->test_x / 64, god->test_y / 64);
 		render_next_frame(god);
 	}
 	return (0);
 }
 
-
-
 char	**parse_map(char *arg)
 {
-	//check validity of map then push the map into 2D array.
-	//Proceed to process graphical management and textures based on the map
-	int	fd;
+	int		i;
+	int		fd;
 	char	*line;
 	char	**result;
-	int	i;
 
 	i = 0;
 	result = malloc(sizeof(char *) * 1024);
@@ -83,12 +75,12 @@ int	main(int argc, char **argv)
 	god->map = parse_map(argv[1]);
 	if (!check_map_validity(god))
 		exit_game(god, god->rows);
-	god->resX = 64 * god->cols;
-	god->resY = 64 * god->rows;
-	god->testX = 64 * god->player_x;
-	god->testY = 64 * god->player_y;
+	god->res_x = 64 * god->cols;
+	god->res_y = 64 * god->rows;
+	god->test_x = 64 * god->player_x;
+	god->test_y = 64 * god->player_y;
 	god->mlx = mlx_init();
-	god->win = mlx_new_window(god->mlx, god->resX, god->resY, "yo");
+	god->win = mlx_new_window(god->mlx, god->res_x, god->res_y, "yo");
 	load_textures(god, 64);
 	render_next_frame(god);
 	mlx_hook(god->win, 17, 1L << 17, exit_button, god);

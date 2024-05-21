@@ -14,7 +14,7 @@
 
 int	check_structure(t_god *god)
 {
- 	int	i;
+	int		i;
 	size_t	count;
 
 	i = 0;
@@ -24,10 +24,11 @@ int	check_structure(t_god *god)
 		if (god->map[i + 1] && count != ft_strlen(god->map[i + 1])
 			&& god->map[i + 1][0] != '\n')
 		{
-			printf("Error.\nInvalid map structure/newline. Make sure it's a rectangle\n");
+			ft_printf("Error.\nInvalid map structure/newline.");
+			ft_printf("Make sure it's a rectangle\n");
 			return (0);
 		}
-        	i++;
+		i++;
 	}
 	return (1);
 }
@@ -38,10 +39,10 @@ int	check_amounts(t_god *god, int p, int e, int c)
 	int	j;
 
 	i = -1;
-	while(god->map[++i])
+	while (god->map[++i])
 	{
 		j = -1;
-		while(god->map[i][++j])
+		while (god->map[i][++j])
 		{
 			if (god->map[i][j] == 'P')
 				p++;
@@ -65,13 +66,14 @@ int	check_elements(t_god *god)
 	int	j;
 
 	i = -1;
-	while(god->map[++i])
+	while (god->map[++i])
 	{
 		j = 0;
-		while(god->map[i][j] && god->map[i][j] != '\n')
+		while (god->map[i][j] && god->map[i][j] != '\n')
 		{
-			if (god->map[i][j] == 'P' || god->map[i][j] == 'E' || god->map[i][j] == 'C'
-				|| god->map[i][j] == '1' || god->map[i][j] == '0')
+			if (god->map[i][j] == 'P' || god->map[i][j] == 'E'
+				|| god->map[i][j] == 'C' || god->map[i][j] == '1'
+				|| god->map[i][j] == '0')
 				j++;
 			else
 			{
@@ -94,7 +96,7 @@ int	check_walls(t_god *god, int i, int j)
 		j++;
 	}
 	row_len = j - 1;
-	while(god->map[i + 1])
+	while (god->map[i + 1])
 	{
 		if (god->map[i][0] != '1' || god->map[i][row_len] != '1')
 			return (0);

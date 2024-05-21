@@ -18,10 +18,10 @@ void	find_player(t_god *god)
 	int	col;
 
 	row = -1;
-	while(god->map[++row])
+	while (god->map[++row])
 	{
 		col = -1;
-		while(god->map[row][++col])
+		while (god->map[row][++col])
 		{
 			if (god->map[row][col] == 'P')
 			{
@@ -31,6 +31,7 @@ void	find_player(t_god *god)
 		}
 	}
 }
+
 void	map_size(t_god *god)
 {
 	int	rows;
@@ -58,10 +59,10 @@ int	floodfill(char **map, int x, int y, t_god *god)
 	cols = god->cols;
 	if (x < 0 || x >= rows || y < 0 || y >= cols || (map[x][y] != 'C'
 		&& map[x][y] != 'P' && map[x][y] != '0'))
-        return 0;
+		return (0);
 	if (x < 0 || x >= rows || y < 0 || y >= cols || (map[x][y] != 'C'
 		&& map[x][y] != 'P' && map[x][y] != '0'))
-		return 0;
+		return (0);
 	if (map[x][y] == 'C')
 		count = 1;
 	map[x][y] = 'V';
@@ -72,32 +73,19 @@ int	floodfill(char **map, int x, int y, t_god *god)
 	return (count);
 }
 
-
 int	check_collect_validity(t_god *god)
 {
+	int		i;
+	int		reachable;
 	char	**copy;
-	int	i;
-	int	reachable;
 
 	copy = malloc(sizeof(char *) * (god->rows + 1));
 	i = -1;
 	while (++i < god->rows)
 		copy[i] = ft_strdup(god->map[i]);
 	copy[i] = NULL;
-
-	/* i = 0;
-	while (i < god->rows)
-	{
-		printf("%s\n", copy[i]);
-		i++;
-	}
-	printf("player X: %d\n", god->player_x);
-	printf("player Y: %d\n", god->player_y); */
-
 	i = 0;
 	reachable = floodfill(copy, god->player_y, god->player_x, god);
-	//ft_printf("Collectibles in map: %d\n", god->collectibles);
-	//ft_printf("Collectibles reachable: %d\n", reachable);
 	while (i < god->rows)
 	{
 		free (copy[i]);

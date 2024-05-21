@@ -12,7 +12,6 @@
 
 #include "get_next_line.h"
 
-
 char	*store_remainder(char *storage)
 {
 	char	*buffer;

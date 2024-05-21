@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:07:15 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/21 15:11:37 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/21 15:39:12 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	exit_button(t_god *god)
 
 void	exit_game(t_god *god, int maprows)
 {
-
 	while (--maprows >= 0)
 		free(god->map[maprows]);
 	free(god->map);
@@ -55,10 +54,10 @@ void	god_init(t_god *god)
 	god->player_y = 0;
 	god->rows = 0;
 	god->cols = 0;
-	god->testX = 0;
-	god->testY = 0;
-	god->resX = 0;
-	god->resY = 0;
+	god->test_x = 0;
+	god->test_y = 0;
+	god->res_x = 0;
+	god->res_y = 0;
 	god->player = NULL;
 	god->crew = NULL;
 	god->wall = NULL;
