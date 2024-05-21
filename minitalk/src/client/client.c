@@ -67,7 +67,7 @@ void	sig_handler(int sig)
 {
 	unsigned int	server_pid;
 	static int		i = 1;
-	static char			*message = NULL;
+	static char		*message = NULL;
 
 	server_pid = ft_atoi(g_argv[1]);
 	if (!message)
