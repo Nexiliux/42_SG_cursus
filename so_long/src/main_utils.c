@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:07:15 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/21 20:56:20 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/21 21:18:28 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	god_init(t_god *god)
 	god->test_y = 0;
 	god->res_x = 0;
 	god->res_y = 0;
+	god->exit = 0;
+	god->moves = 0;
 	god->player = NULL;
 	god->crew = NULL;
 	god->wall = NULL;
