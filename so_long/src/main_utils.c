@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 17:07:15 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/19 19:42:39 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/21 15:11:37 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,26 @@ int	exit_button(t_god *god)
 
 void	exit_game(t_god *god, int maprows)
 {
-	if (god->win)
-		mlx_destroy_window(god->mlx, god->win);
-	if (god->mlx)
-		free(god->mlx);
+
 	while (--maprows >= 0)
 		free(god->map[maprows]);
 	free(god->map);
-	free(god->player);
-	free(god->crew);
-	free(god->wall);
-	free(god->tile);
-	free(god->vent_closed);
-	free(god->vent_open);
+	if (god->player)
+	{
+		mlx_destroy_image(god->mlx, god->player);
+		mlx_destroy_image(god->mlx, god->crew);
+		mlx_destroy_image(god->mlx, god->wall);
+		mlx_destroy_image(god->mlx, god->tile);
+		mlx_destroy_image(god->mlx, god->vent_closed);
+		mlx_destroy_image(god->mlx, god->vent_open);
+	}
+	if (god->win)
+		mlx_destroy_window(god->mlx, god->win);
+	if (god->mlx)
+	{
+		mlx_destroy_display(god->mlx);
+		free(god->mlx);
+	}
 	free(god);
 	exit(1);
 }

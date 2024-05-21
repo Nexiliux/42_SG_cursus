@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:57:21 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/19 19:46:31 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/21 15:12:09 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,9 @@ int	main(int argc, char **argv)
 	god->resY = 64 * god->rows;
 	god->testX = 64 * god->player_x;
 	god->testY = 64 * god->player_y;
-
 	god->mlx = mlx_init();
 	god->win = mlx_new_window(god->mlx, god->resX, god->resY, "yo");
 	load_textures(god, 64);
-	
 	render_next_frame(god);
 	mlx_hook(god->win, 17, 1L << 17, exit_button, god);
 	mlx_key_hook(god->win, key_hook, god);
