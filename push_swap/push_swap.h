@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:36:20 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/05 17:20:31 by wchow            ###   ########.fr       */
+/*   Updated: 2024/05/24 14:38:48 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,11 @@ t_lst	*big_to_push(t_lst **node);
 void	second_action(t_lst **a, t_lst **b);
 
 void	sort_5(t_lst **a, t_lst **b);
-void	sort_5_push(t_lst **a, t_lst **b, t_lst *sec, t_lst *smol);
-void	sort_5_setup(t_lst **a, t_lst *sec, t_lst *smol, int s);
-
 t_lst	*sort_3(t_lst *a);
 
 //Utilities
 int		stack_sorted(t_lst *a);
 void	choose_sort(t_lst **a, t_lst **b);
 void	ft_free(t_lst *a, t_lst *b);
-void	ft_error(void *a, void *b, void *c);
 
 #endif
