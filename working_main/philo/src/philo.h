@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:45:52 by wchow             #+#    #+#             */
-/*   Updated: 2024/05/29 16:42:08 by wchow            ###   ########.fr       */
+/*   Updated: 2024/06/05 19:52:26 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,38 @@
 #include <sys/time.h>
 #include <pthread.h>
 
+//Argument Variables
+typedef struct s_arg
+{
+	int	philos;
+	int	ttd;
+	int	tte;
+	int	tts;
+	int	eatnum;
 
+}	t_arg;
+
+//Philo stats
+typedef struct s_philo
+{
+	int	index;
+	int	dead;
+	int	lastmeal;
+	int	forks;
+}	t_philo;
+
+//Input Checking
+int	inputcheck(int argc, char **argv);
+long	ft_strtol(const char *nptr);
+int	check_size(char **arg);
+int	check_digit(char **arg);
+int	ft_isdigit(char c);
+
+//Initialisation
+int	initialisation(t_arg *arg, int argc, char **argv);
+int	ft_atoi(char *arg, int result, int i);
+
+//Utilities
+void	freedom(t_arg *arg);
 
 #endif
