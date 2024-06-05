@@ -1,4 +1,4 @@
-CC = gcc
+CC = cc
 CFLAGS += -Wall -Werror -Wextra
 LDFLAGS += -L./libft -L./printf
 LIBS += -lft -lftprintf
