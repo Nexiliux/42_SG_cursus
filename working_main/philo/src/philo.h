@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:45:52 by wchow             #+#    #+#             */
-/*   Updated: 2024/06/05 19:52:26 by wchow            ###   ########.fr       */
+/*   Updated: 2024/06/13 18:42:07 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,16 @@ typedef struct s_philo
 {
 	int	index;
 	int	dead;
-	int	lastmeal;
-	int	forks;
+	long	lastmeal;
+	int	fork;
+	pthread_t thread;
 }	t_philo;
+
+/* typedef struct s_fork
+{
+	int	index;
+	int	inuse;
+}	t_fork; */
 
 //Input Checking
 int	inputcheck(int argc, char **argv);
@@ -53,5 +60,6 @@ int	ft_atoi(char *arg, int result, int i);
 
 //Utilities
 void	freedom(t_arg *arg);
+long	get_cur_ms();
 
 #endif
