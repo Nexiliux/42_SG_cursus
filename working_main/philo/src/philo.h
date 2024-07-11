@@ -37,8 +37,11 @@ typedef struct s_philo
 	int	index;
 	int	dead;
 	long	lastmeal;
-	int	fork;
+	int	eatnum;
+	pthread_mutex_t *left_fork;
+	pthread_mutex_t *right_fork;
 	pthread_t thread;
+	t_arg *arg;
 }	t_philo;
 
 /* typedef struct s_fork
