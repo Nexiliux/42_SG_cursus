@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:45:52 by wchow             #+#    #+#             */
-/*   Updated: 2024/06/13 18:42:07 by wchow            ###   ########.fr       */
+/*   Updated: 2024/08/07 16:01:12 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ typedef struct s_philo
 	int	dead;
 	long	lastmeal;
 	int	eatnum;
+	t_arg *arg;
 	pthread_mutex_t *left_fork;
 	pthread_mutex_t *right_fork;
 	pthread_t thread;
-	t_arg *arg;
 }	t_philo;
 
 /* typedef struct s_fork

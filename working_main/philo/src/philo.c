@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:31:20 by wchow             #+#    #+#             */
-/*   Updated: 2024/06/13 18:43:37 by wchow            ###   ########.fr       */
+/*   Updated: 2024/08/07 16:45:04 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	*philosopher_thread(void *arg) {
 	while (1)
 	{
 		printf("Philosopher %d is thinking.\n", philo->index);
+
 		if (philo->index % 2 == 0)
 		{
 			pthread_mutex_lock (philo->left_fork);
@@ -52,19 +53,31 @@ void	*philosopher_thread(void *arg) {
 		printf("Philosopher %d is sleeping.\n", philo->index);
 		usleep (1000 * philo->arg->tts);
 
-		if (philo->eatnum != 0 && philo->eatnum == philo->arg->eatnum)
+		if ((get_cur_ms() - philo->lastmeal) > philo->arg->ttd)
+		{
+			philo->dead = 1;
+			printf("Philo %d has died. Lastmeal: %ldms| TTD: %d\n",
+				philo->index, (get_cur_ms() - philo->lastmeal), philo->arg->ttd);
 			break;
+		}
+		if (philo->eatnum != 0 && philo->eatnum == philo->arg->eatnum)
+		{
+			printf("Philo %d finished lifecycle.\n", philo->index);
+			break;
+		}
 	}
-	printf("Philo finished lifecycle.\n");
 	return NULL;
 }
 
 
 
 void join_philos(t_philo *philos, int num_philos) {
-    for (int i = 0; i < num_philos; i++) {
-        pthread_join(philos[i].thread, NULL);
-    }
+	int i = 0;
+	while (i < num_philos)
+	{
+		pthread_join(philos[i].thread, NULL);
+		i++;
+	}
 }
 
 int	init_philos(t_philo *philos, t_arg *arg, int i)
@@ -72,9 +85,16 @@ int	init_philos(t_philo *philos, t_arg *arg, int i)
 	long	currms = get_cur_ms();
 
 
-	pthread_mutex_t forks[arg->philos];
+	/* pthread_mutex_t forks[arg->philos];
 	for (int i = 0; i < arg->philos; i++)
-		pthread_mutex_init(&forks[i], NULL);
+		pthread_mutex_init(&forks[i], NULL); */
+
+	pthread_mutex_t *forks = malloc(sizeof(pthread_mutex_t) * arg->philos);
+	if (!forks)
+	{
+		perror("Failed to allocate memory for forks");
+		return -1;
+	}
 
 	while (++i < arg->philos)
 	{
@@ -130,9 +150,7 @@ int	main(int argc, char **argv)
 	init_philos(philos, arg, -1);
 	join_philos(philos, arg->philos);
 	for (int i = 0; i < arg->philos; i++)
-	{
-		printf("Philo id: %d\n", philos[i].index);
-		printf("Philo dead?: %d\n", philos[i].dead);
-		printf("Philo lastmeal: %ldms\n", get_cur_ms() - philos[i].lastmeal);
-	}
+		printf("Philo id: %d| Dead? %d| Lastmeal: %ldms| Times ate: %d\n", philos[i].index,
+			philos[i].dead, (get_cur_ms() - philos->lastmeal), philos[i].eatnum);
+	printf("Program completed\n");
 }
