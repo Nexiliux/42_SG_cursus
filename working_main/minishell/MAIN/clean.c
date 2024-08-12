@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 05:19:05 by wchow             #+#    #+#             */
-/*   Updated: 2024/08/12 13:00:16 by wchow            ###   ########.fr       */
+/*   Updated: 2024/08/12 13:00:15 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,23 @@ void	initData(t_data *data, char **env)
 	data->env[i] = NULL;
 }
 
-void	start(t_data *data)
+int	main(int argc, char **argv, char **env)
 {
+	(void)argc;
+	(void)argv;
+	struct sigaction	sa;
+	t_data	*data;
 	char	*input;
+	printf("Only use echo or env for now.\n");
 
+	//Signal handling and removing CTL+C (need to add CTRL+/)
+	ignore_sigquit();
+	sa.sa_handler = &resetPrompt; //Gives prompt to usr and waits for input
+	sa.sa_flags = 0;
+	sigaction(SIGINT, &sa, NULL);
+
+	data = ft_calloc (1, sizeof(t_data));
+	initData(data, env);
 	while (1)
 	{
 		input = readline("<<Nanoshell>>  ");
@@ -72,25 +85,5 @@ void	start(t_data *data)
 			break;
 		}
 	}
-}
-
-int	main(int argc, char **argv, char **env)
-{
-	(void)argc;
-	(void)argv;
-	struct sigaction	sa;
-	t_data	*data;
-
-	printf("Only use echo or env for now.\n");
-
-	//Signal handling and removing CTL+C (need to add CTRL+/)
-	ignore_sigquit();
-	sa.sa_handler = &resetPrompt; //Gives prompt to usr and waits for input
-	sa.sa_flags = 0;
-	sigaction(SIGINT, &sa, NULL);
-
-	data = ft_calloc (1, sizeof(t_data));
-	initData(data, env);
-	start(data);
 	return (0);
 }
