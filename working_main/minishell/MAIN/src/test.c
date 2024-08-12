@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 05:19:05 by wchow             #+#    #+#             */
-/*   Updated: 2024/08/12 13:00:16 by wchow            ###   ########.fr       */
+/*   Updated: 2024/08/13 04:21:01 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ void	process(char *input, t_data *data)
 		for (i = 0; data->env[i]; i++)
 			printf("%s\n", data->env[i]);
 		printf("i is: %d\n", i);
+	}
+	if (!ft_strncmp(input, "exit", 4))
+	{
+		freeData(data);
+		exit(0);
 	}
 }
 
@@ -74,6 +79,17 @@ void	start(t_data *data)
 	}
 }
 
+void	freeData(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	while (++i >= -1 && data->env[i])
+		free (data->env[i]);
+	free(data->env);
+	free(data);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	(void)argc;
@@ -81,7 +97,7 @@ int	main(int argc, char **argv, char **env)
 	struct sigaction	sa;
 	t_data	*data;
 
-	printf("Only use echo or env for now.\n");
+	printf("Available commands: echo | env | exit.\n");
 
 	//Signal handling and removing CTL+C (need to add CTRL+/)
 	ignore_sigquit();
@@ -92,5 +108,6 @@ int	main(int argc, char **argv, char **env)
 	data = ft_calloc (1, sizeof(t_data));
 	initData(data, env);
 	start(data);
+	freeData(data);
 	return (0);
 }

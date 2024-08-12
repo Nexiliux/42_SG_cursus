@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 05:19:23 by wchow             #+#    #+#             */
-/*   Updated: 2024/08/12 11:56:01 by wchow            ###   ########.fr       */
+/*   Updated: 2024/08/13 04:18:32 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ typedef struct s_data
 {
 	char	**env;
 }	t_data;
+
+void	freeData(t_data *data);
 
 #endif
