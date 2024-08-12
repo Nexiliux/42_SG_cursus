@@ -6,7 +6,7 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 05:19:05 by wchow             #+#    #+#             */
-/*   Updated: 2024/08/10 06:34:06 by wchow            ###   ########.fr       */
+/*   Updated: 2024/08/12 12:43:38 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,53 @@ void	ignore_sigquit(void)
 	sigaction(SIGQUIT, &sa, NULL);
 }
 
-void	process(char *input)
+void	process(char *input, t_data *data)
 {
+	int i = 0;
 	if (!ft_strncmp(input, "echo ", 5))
 		ft_printf("%s\n", input + 5);
+	if (!ft_strncmp(input, "env", 3))
+	{
+		for (i = 0; data->env[i]; i++)
+			printf("%s\n", data->env[i]);
+		printf("i is: %d\n", i);
+	}
 }
 
-int	main(int argc, char **argv)
+void	initData(t_data *data, char **env)
+{
+	int i = 0;
+	while (env[i])
+		i++;
+	data->env = ft_calloc(i + 1, sizeof * data->env);
+	for (i = 0; env[i]; i++)
+		data->env[i] = ft_strdup(env[i]);
+	data->env[i] = NULL;
+}
+
+int	main(int argc, char **argv, char **env)
 {
 	(void)argc;
 	(void)argv;
 	struct sigaction	sa;
+	t_data	*data;
 	char	*input;
-	printf("Only use echo for now.\n");
+	printf("Only use echo or env for now.\n");
 
 	ignore_sigquit();
 	sa.sa_handler = &resetPrompt;
 	sa.sa_flags = 0;
 	sigaction(SIGINT, &sa, NULL);
+
+	data = ft_calloc (1, sizeof(t_data));
+	initData(data, env);
 	while (1)
 	{
 		input = readline("<<Nanoshell>>  ");
 		if (input && *input)
 		{
 			add_history(input); // Add to history if input is not empty
-			process(input);
+			process(input, data);
 			free(input);
 		}
 		else if (input == NULL) // Handle Ctrl+D (EOF)
