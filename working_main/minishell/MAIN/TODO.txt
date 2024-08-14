@@ -1,0 +1,21 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    TODO.txt                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/08/14 13:21:02 by wchow             #+#    #+#              #
+#    Updated: 2024/08/14 13:21:05 by wchow            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+14/8/24 Goal:
+1. Try to allow syscalls to take in arguments (e.g "cd minishell_objs", where 'minishell_objs'
+is the argument for cd).
+
+2. Handle ’ (single quote) which should prevent the shell from interpreting the meta-
+characters in the quoted sequence. Specifically for ECHO first, I assume this is for other
+commands aswell.
+
+3. Look into redirections
