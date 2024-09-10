@@ -6,11 +6,11 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:46:01 by wchow             #+#    #+#             */
-/*   Updated: 2024/08/12 11:48:03 by wchow            ###   ########.fr       */
+/*   Updated: 2024/09/10 16:41:21 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../minishell.h"
 
 int	ft_strlen2(char *str)
 {

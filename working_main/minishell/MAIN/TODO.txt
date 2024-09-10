@@ -6,9 +6,26 @@
 #    By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/14 13:21:02 by wchow             #+#    #+#              #
-#    Updated: 2024/08/14 15:12:30 by wchow            ###   ########.fr        #
+#    Updated: 2024/09/10 16:28:32 by wchow            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+10/9/24 Now reconvened with Jeremy, I'll be working on echo, pwd, env & exit.
+1. work on: 
+	1.1 echo.c and what echo -n is
+		Since we haven't handle quotes and dquotes yet, this func will only take in
+		the string, without considering for quotes etc as if the program has already
+		handled and trimmed off everything; echo will only print things to output
+		indiscriminately.
+
+		Nvm, this echo will take in two arguments, whether -n was used or not. This
+		will allow us to dynamically use future functions to split up whether echo
+		has a -n or not BEFORE using the echo function.
+		For now, I will implement this inside the echo.c itself.
+	1.2 pwd.c
+	1.3 env.c
+	1.4 exit.c
+
 
 14/8/24 Goal:
 1. Try to allow syscalls to take in arguments (e.g "cd minishell_objs", where 'minishell_objs'

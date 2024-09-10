@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 05:19:05 by wchow             #+#    #+#             */
-/*   Updated: 2024/08/14 15:04:39 by wchow            ###   ########.fr       */
+/*   Updated: 2024/09/10 16:41:21 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../minishell.h"
 
 /*For commands that have arguments, this reallocs and resets argv*/
 void	setArgv(char *input, char **argv)
@@ -119,7 +119,7 @@ void	process(char *input, t_data *data)
 	if (!ft_strncmp(input, "help", 4))
 			printf("%s", showCmds);
 	else if (!ft_strncmp(input, "echo ", 5))
-		ft_printf("%s\n", input + 5);
+		ft_echo(input + 5);
 	else if (!ft_strncmp(input, "env", 3))
 		for (int i = 0; data->env[i]; i++)
 			printf("%s\n", data->env[i]);

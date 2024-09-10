@@ -6,11 +6,11 @@
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 05:19:05 by wchow             #+#    #+#             */
-/*   Updated: 2024/08/12 13:00:15 by wchow            ###   ########.fr       */
+/*   Updated: 2024/09/10 16:41:21 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../minishell.h"
 
 void	resetPrompt(int signum)
 {

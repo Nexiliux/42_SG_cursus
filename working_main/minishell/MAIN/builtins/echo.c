@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialisaiton.c                                   :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wchow <wchow@42mail.sutd.edu.sg>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 04:48:38 by wchow             #+#    #+#             */
+/*   Created: 2024/09/09 20:44:06 by wchow             #+#    #+#             */
 /*   Updated: 2024/09/10 16:41:21 by wchow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	initData(t_data *data, char **env)
+/* Checks whether input has -n or not, then sends it to the main echo function */
+int	checkNewline(char *input)
 {
-	int i = 0;
-	while (env[i])
-		i++;
-	data->env = ft_calloc(i + 1, sizeof * data->env);
-	for (i = 0; env[i]; i++)
-	{
-		data->env[i] = ft_strdup(env[i]);
-		if (ft_strncmp(env[i], "PATH=", 5) == 0)
-		{
-			data->path = ft_strdup(env[i] + 5);
-			break;
-		}
-	}
-	data->env[i] = NULL;
+	//If there is a -n, means FORGO \n at the back
+	if (ft_strncmp(input, "-n ", 3))
+		return (0);
+	else
+		return (1);
+}
+
+/* Custom echo command. If (newline == 1) = no -n. If (newline == 0) = there is -n. */
+void	ft_echo(char *input)
+{
+	int	newline;
+
+	newline = checkNewline(input);
+	if (newline == 1)
+		ft_printf("%s\n", input);
+	else
+		ft_printf("%s", input + 3);
 }
